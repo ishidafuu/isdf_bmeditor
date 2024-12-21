@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using ReactiveUI;
+using System.Reactive;
 using isdf_bmeditor.Models;
 using isdf_bmeditor.Services;
+using Avalonia.Platform.Storage;
 
 namespace isdf_bmeditor.ViewModels;
 
@@ -11,21 +14,26 @@ namespace isdf_bmeditor.ViewModels;
 public class CharaCellEditorViewModel : ViewModelBase
 {
     private readonly ImageService _imageService;
+    private readonly IStorageProvider _storageProvider;
     private List<Cell> _cells = new();
     private int _activeCellIndex;
     private ImageAsset? _bodyImage;
     private ImageAsset? _faceImage;
     private ImageAsset? _itemImage;
 
-    public CharaCellEditorViewModel(ImageService imageService)
+    public CharaCellEditorViewModel(ImageService imageService, IStorageProvider storageProvider)
     {
         _imageService = imageService;
+        _storageProvider = storageProvider;
         ChangeCellIndexCommand = ReactiveCommand.Create<int>(ChangeCellIndex);
         UpdateCellPositionCommand = ReactiveCommand.Create<string>(UpdateCellPosition);
         SaveCommand = ReactiveCommand.Create<string>(SaveCells);
         LoadCommand = ReactiveCommand.Create<string>(LoadCells);
         AddCellCommand = ReactiveCommand.Create(AddCell);
         DeleteCellCommand = ReactiveCommand.Create(DeleteCell);
+        SelectBodyImageCommand = ReactiveCommand.CreateFromTask(SelectBodyImage);
+        SelectFaceImageCommand = ReactiveCommand.CreateFromTask(SelectFaceImage);
+        SelectItemImageCommand = ReactiveCommand.CreateFromTask(SelectItemImage);
     }
 
     /// <summary>
@@ -214,5 +222,79 @@ public class CharaCellEditorViewModel : ViewModelBase
             ActiveCellIndex = Math.Max(0, _cells.Count - 1);
         }
         this.RaisePropertyChanged(nameof(ActiveCell));
+    }
+
+    /// <summary>
+    /// 体の画像を選択するコマンド
+    /// </summary>
+    public ReactiveCommand<Unit, Unit> SelectBodyImageCommand { get; }
+
+    /// <summary>
+    /// 顔の画像を選択するコマンド
+    /// </summary>
+    public ReactiveCommand<Unit, Unit> SelectFaceImageCommand { get; }
+
+    /// <summary>
+    /// アイテムの画像を選択するコマンド
+    /// </summary>
+    public ReactiveCommand<Unit, Unit> SelectItemImageCommand { get; }
+
+    /// <summary>
+    /// 体の画像を選択する
+    /// </summary>
+    private async Task SelectBodyImage()
+    {
+        var file = await SelectImageFile();
+        if (file != null)
+        {
+            BodyImage = _imageService.LoadImage(file.Path.LocalPath);
+        }
+    }
+
+    /// <summary>
+    /// 顔の画像を選択する
+    /// </summary>
+    private async Task SelectFaceImage()
+    {
+        var file = await SelectImageFile();
+        if (file != null)
+        {
+            FaceImage = _imageService.LoadImage(file.Path.LocalPath);
+        }
+    }
+
+    /// <summary>
+    /// アイテムの画像を選択する
+    /// </summary>
+    private async Task SelectItemImage()
+    {
+        var file = await SelectImageFile();
+        if (file != null)
+        {
+            ItemImage = _imageService.LoadImage(file.Path.LocalPath);
+        }
+    }
+
+    /// <summary>
+    /// 画像ファイルを選択する
+    /// </summary>
+    private async Task<IStorageFile?> SelectImageFile()
+    {
+        var options = new FilePickerOpenOptions
+        {
+            Title = "画像ファイルを選択",
+            AllowMultiple = false,
+            FileTypeFilter = new[]
+            {
+                new FilePickerFileType("画像ファイル")
+                {
+                    Patterns = new[] { "*.png", "*.jpg", "*.jpeg", "*.bmp" },
+                    MimeTypes = new[] { "image/png", "image/jpeg", "image/bmp" }
+                }
+            }
+        };
+
+        var files = await _storageProvider.OpenFilePickerAsync(options);
+        return files.Count > 0 ? files[0] : null;
     }
 } 
