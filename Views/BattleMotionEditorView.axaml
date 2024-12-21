@@ -39,10 +39,10 @@
                 <!-- コマ選択コントロール -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <TextBlock Text="コマ:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                    <Button Content="←" Command="{Binding ChangeKomaIndex}" 
+                    <Button Content="←" Command="{Binding ChangeKomaIndexCommand}" 
                             CommandParameter="-1" Margin="0,0,5,0"/>
                     <TextBlock Text="{Binding ActiveKomaIndex}" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                    <Button Content="→" Command="{Binding ChangeKomaIndex}" 
+                    <Button Content="→" Command="{Binding ChangeKomaIndexCommand}" 
                             CommandParameter="1"/>
                 </StackPanel>
 
