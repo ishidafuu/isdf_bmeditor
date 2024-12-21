@@ -33,10 +33,17 @@ public class CharaCellEditorViewModel : ViewModelBase
         LoadCommand = ReactiveCommand.CreateFromTask<string>(LoadCells);
         AddCellCommand = ReactiveCommand.Create(AddCell);
         DeleteCellCommand = ReactiveCommand.Create(DeleteCell);
-        SelectBodyImageCommand = ReactiveCommand.CreateFromTask(SelectBodyImage);
-        SelectFaceImageCommand = ReactiveCommand.CreateFromTask(SelectFaceImage);
-        SelectItemImageCommand = ReactiveCommand.CreateFromTask(SelectItemImage);
         UpdateScaleCommand = ReactiveCommand.Create<string>(UpdateScale);
+
+        // 固定画像の読み込み
+        LoadFixedImages();
+    }
+
+    private void LoadFixedImages()
+    {
+        BodyImage = _imageService.LoadImage("Assets/Characters/body.png");
+        FaceImage = _imageService.LoadImage("Assets/Characters/face.png");
+        ItemImage = _imageService.LoadImage("Assets/Characters/item.png");
     }
 
     /// <summary>
@@ -101,24 +108,6 @@ public class CharaCellEditorViewModel : ViewModelBase
             ActiveCellIndex = newIndex;
         }
     }
-
-    /// <summary>
-    /// 画像を読み込む
-    /// </summary>
-    /// <param name="bodyPath">体の画像パス</param>
-    /// <param name="facePath">顔の画像パス</param>
-    /// <param name="itemPath">アイテムの画像パス</param>
-    public void LoadImages(string bodyPath, string facePath, string itemPath)
-    {
-        BodyImage = _imageService.LoadImage(bodyPath);
-        FaceImage = _imageService.LoadImage(facePath);
-        ItemImage = _imageService.LoadImage(itemPath);
-    }
-
-    /// <summary>
-    /// セル番号変更コマンド
-    /// </summary>
-    public ReactiveCommand<int, Unit> ChangeCellIndexCommand { get; }
 
     /// <summary>
     /// セル位置更新コマンド
@@ -272,80 +261,6 @@ public class CharaCellEditorViewModel : ViewModelBase
             ActiveCellIndex = Math.Max(0, _cells.Count - 1);
         }
         this.RaisePropertyChanged(nameof(ActiveCell));
-    }
-
-    /// <summary>
-    /// 体の画像を選択するコマンド
-    /// </summary>
-    public ReactiveCommand<Unit, Unit> SelectBodyImageCommand { get; }
-
-    /// <summary>
-    /// 顔の画像を選択するコマンド
-    /// </summary>
-    public ReactiveCommand<Unit, Unit> SelectFaceImageCommand { get; }
-
-    /// <summary>
-    /// アイテムの画像を選択するコマンド
-    /// </summary>
-    public ReactiveCommand<Unit, Unit> SelectItemImageCommand { get; }
-
-    /// <summary>
-    /// 体の画像を選択する
-    /// </summary>
-    private async Task SelectBodyImage()
-    {
-        var file = await SelectImageFile();
-        if (file != null)
-        {
-            BodyImage = _imageService.LoadImage(file.Path.LocalPath);
-        }
-    }
-
-    /// <summary>
-    /// 顔の画像を選択する
-    /// </summary>
-    private async Task SelectFaceImage()
-    {
-        var file = await SelectImageFile();
-        if (file != null)
-        {
-            FaceImage = _imageService.LoadImage(file.Path.LocalPath);
-        }
-    }
-
-    /// <summary>
-    /// アイテムの画像を選択する
-    /// </summary>
-    private async Task SelectItemImage()
-    {
-        var file = await SelectImageFile();
-        if (file != null)
-        {
-            ItemImage = _imageService.LoadImage(file.Path.LocalPath);
-        }
-    }
-
-    /// <summary>
-    /// 画像ファイルを選択する
-    /// </summary>
-    private async Task<IStorageFile?> SelectImageFile()
-    {
-        var options = new FilePickerOpenOptions
-        {
-            Title = "画像ファイルを選択",
-            AllowMultiple = false,
-            FileTypeFilter = new[]
-            {
-                new FilePickerFileType("画像ファイル")
-                {
-                    Patterns = new[] { "*.png", "*.jpg", "*.jpeg", "*.bmp" },
-                    MimeTypes = new[] { "image/png", "image/jpeg", "image/bmp" }
-                }
-            }
-        };
-
-        var files = await _storageProvider.OpenFilePickerAsync(options);
-        return files.Count > 0 ? files[0] : null;
     }
 
     /// <summary>
