@@ -35,18 +35,21 @@ public class ImageService
             using var image = Image.Load<Rgba32>(path);
             
             // マゼンタ色を透過に変換
-            for (int y = 0; y < image.Height; y++)
+            image.ProcessPixelRows(accessor =>
             {
-                var row = image.GetPixelRowSpan(y);
-                for (int x = 0; x < row.Length; x++)
+                for (int y = 0; y < accessor.Height; y++)
                 {
-                    ref var pixel = ref row[x];
-                    if (pixel.R == 255 && pixel.G == 0 && pixel.B == 255)
+                    var row = accessor.GetRowSpan(y);
+                    for (int x = 0; x < row.Length; x++)
                     {
-                        pixel = new Rgba32(0, 0, 0, 0);
+                        ref var pixel = ref row[x];
+                        if (pixel.R == 255 && pixel.G == 0 && pixel.B == 255)
+                        {
+                            pixel = new Rgba32(0, 0, 0, 0);
+                        }
                     }
                 }
-            }
+            });
 
             // メモリストリームに保存
             using var memoryStream = new MemoryStream();
