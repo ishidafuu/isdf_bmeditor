@@ -55,15 +55,17 @@ public class ImageService
                         ref var pixel = ref row[x];
                         if (pixel.R == 255 && pixel.G == 0 && pixel.B == 255)
                         {
-                            pixel = new Rgba32(0, 0, 0, 0);
+                            pixel = new Rgba32(0, 0, 0, 0); // 完全な透過（アルファ値0）
                         }
                     }
                 }
             });
 
-            // メモリストリームに保存
+            // メモリストリームに保存（PNG形式で保存して透過を維持）
             using var memoryStream = new MemoryStream();
-            image.SaveAsPng(memoryStream);
+            var encoder = new SixLabors.ImageSharp.Formats.Png.PngEncoder();
+            encoder.ColorType = SixLabors.ImageSharp.Formats.Png.PngColorType.RgbWithAlpha;
+            image.Save(memoryStream, encoder);
             memoryStream.Position = 0;
 
             // AvaloniaのBitmapとして読み込む
