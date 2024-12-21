@@ -3,6 +3,8 @@ using ReactiveUI;
 using System.Reactive;
 using Avalonia.Platform.Storage;
 using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 
 namespace isdf_bmeditor.ViewModels;
 
@@ -12,17 +14,17 @@ namespace isdf_bmeditor.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _currentViewModel = null!;
-    private readonly IStorageProvider _storageProvider;
+    private IStorageProvider? _storageProvider;
     private readonly Services.ImageService _imageService;
 
     public MainWindowViewModel()
     {
         _imageService = new Services.ImageService();
-        _storageProvider = new StandardStorageProvider();
 
         ShowCharaCellEditorCommand = ReactiveCommand.Create(() =>
         {
-            var viewModel = new CharaCellEditorViewModel(_imageService, _storageProvider);
+            InitializeStorageProviderIfNeeded();
+            var viewModel = new CharaCellEditorViewModel(_imageService, _storageProvider!);
             CurrentViewModel = viewModel;
         });
 
@@ -39,7 +41,27 @@ public class MainWindowViewModel : ViewModelBase
         });
 
         // デフォルトでキャラクターセルエディタを表示
-        CurrentViewModel = new CharaCellEditorViewModel(_imageService, _storageProvider);
+        InitializeStorageProviderIfNeeded();
+        CurrentViewModel = new CharaCellEditorViewModel(_imageService, _storageProvider!);
+    }
+
+    private void InitializeStorageProviderIfNeeded()
+    {
+        if (_storageProvider != null) return;
+        
+        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            var topLevel = TopLevel.GetTopLevel(desktop.MainWindow);
+            if (topLevel == null)
+            {
+                throw new InvalidOperationException("TopLevelが見つかりません");
+            }
+            _storageProvider = topLevel.StorageProvider;
+        }
+        else
+        {
+            throw new InvalidOperationException("デスクトップアプリケーションライフタイムが見つかりません");
+        }
     }
 
     /// <summary>
