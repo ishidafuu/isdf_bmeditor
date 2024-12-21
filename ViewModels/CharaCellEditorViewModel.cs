@@ -27,13 +27,25 @@ public class CharaCellEditorViewModel : ViewModelBase
     {
         _imageService = imageService;
         _storageProvider = storageProvider;
-        ChangeCellIndexCommand = ReactiveCommand.Create<int>(ChangeCellIndex);
+        ChangeCellIndexCommand = ReactiveCommand.Create<string>(param => 
+        {
+            if (int.TryParse(param, out int amount))
+            {
+                ChangeCellIndex(amount);
+            }
+        });
         UpdateCellPositionCommand = ReactiveCommand.Create<string>(UpdateCellPosition);
         SaveCommand = ReactiveCommand.CreateFromTask<string>(SaveCells);
         LoadCommand = ReactiveCommand.CreateFromTask<string>(LoadCells);
         AddCellCommand = ReactiveCommand.Create(AddCell);
         DeleteCellCommand = ReactiveCommand.Create(DeleteCell);
-        UpdateScaleCommand = ReactiveCommand.Create<string>(UpdateScale);
+        UpdateScaleCommand = ReactiveCommand.Create<string>(param =>
+        {
+            if (double.TryParse(param, out double amount))
+            {
+                UpdateScale(amount);
+            }
+        });
 
         // 固定画像の読み込み
         LoadFixedImages();
@@ -99,7 +111,7 @@ public class CharaCellEditorViewModel : ViewModelBase
     /// <summary>
     /// セル番号変更コマンド
     /// </summary>
-    public ReactiveCommand<int, Unit> ChangeCellIndexCommand { get; }
+    public ReactiveCommand<string, Unit> ChangeCellIndexCommand { get; }
 
     /// <summary>
     /// セルインデックスを変更する
@@ -129,8 +141,9 @@ public class CharaCellEditorViewModel : ViewModelBase
         var parts = parameter.Split('_');
         if (parts.Length != 2) return;
 
-        var (property, amount) = (parts[0], int.Parse(parts[1]));
+        if (!int.TryParse(parts[1], out int amount)) return;
 
+        var property = parts[0];
         switch (property)
         {
             case "BodyX":
@@ -276,9 +289,8 @@ public class CharaCellEditorViewModel : ViewModelBase
     /// <summary>
     /// 拡大率を変更する
     /// </summary>
-    private void UpdateScale(string parameter)
+    private void UpdateScale(double amount)
     {
-        var amount = double.Parse(parameter);
         var newScale = Scale + amount;
         if (newScale >= 0.1 && newScale <= 5.0)
         {
