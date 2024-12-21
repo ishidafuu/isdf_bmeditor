@@ -25,6 +25,33 @@ public class CharacterView : Control
         set => SetValue(ImageProperty, value);
     }
 
+    public static readonly StyledProperty<double> XProperty =
+        AvaloniaProperty.Register<CharacterView, double>(nameof(X));
+
+    public static readonly StyledProperty<double> YProperty =
+        AvaloniaProperty.Register<CharacterView, double>(nameof(Y));
+
+    public static readonly StyledProperty<double> AngleProperty =
+        AvaloniaProperty.Register<CharacterView, double>(nameof(Angle));
+
+    public double X
+    {
+        get => GetValue(XProperty);
+        set => SetValue(XProperty, value);
+    }
+
+    public double Y
+    {
+        get => GetValue(YProperty);
+        set => SetValue(YProperty, value);
+    }
+
+    public double Angle
+    {
+        get => GetValue(AngleProperty);
+        set => SetValue(AngleProperty, value);
+    }
+
     /// <summary>
     /// 描画処理
     /// </summary>
@@ -32,7 +59,11 @@ public class CharacterView : Control
     {
         if (Image?.Bitmap == null) return;
 
-        var bounds = new Rect(0, 0, Bounds.Width, Bounds.Height);
-        context.DrawImage(Image.Bitmap, bounds);
+        using var _ = context.PushTransform(
+            Matrix.CreateTranslation(-Image.Width / 2, -Image.Height / 2) *
+            Matrix.CreateRotation(Angle * Math.PI / 180) *
+            Matrix.CreateTranslation(X + Image.Width / 2, Y + Image.Height / 2));
+
+        context.DrawImage(Image.Bitmap, new Rect(0, 0, Image.Width, Image.Height));
     }
 } 

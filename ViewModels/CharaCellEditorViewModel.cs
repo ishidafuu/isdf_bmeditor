@@ -20,6 +20,8 @@ public class CharaCellEditorViewModel : ViewModelBase
     public CharaCellEditorViewModel(ImageService imageService)
     {
         _imageService = imageService;
+        ChangeCellIndexCommand = ReactiveCommand.Create<int>(ChangeCellIndex);
+        UpdateCellPositionCommand = ReactiveCommand.Create<string>(UpdateCellPosition);
     }
 
     /// <summary>
@@ -87,5 +89,58 @@ public class CharaCellEditorViewModel : ViewModelBase
         BodyImage = _imageService.LoadImage(bodyPath);
         FaceImage = _imageService.LoadImage(facePath);
         ItemImage = _imageService.LoadImage(itemPath);
+    }
+
+    /// <summary>
+    /// セル番号変更コマンド
+    /// </summary>
+    public ReactiveCommand<int, Unit> ChangeCellIndexCommand { get; }
+
+    /// <summary>
+    /// セル位置更新コマンド
+    /// </summary>
+    public ReactiveCommand<string, Unit> UpdateCellPositionCommand { get; }
+
+    /// <summary>
+    /// セルの位置を更新する
+    /// </summary>
+    private void UpdateCellPosition(string parameter)
+    {
+        if (ActiveCell == null) return;
+
+        var parts = parameter.Split('_');
+        if (parts.Length != 2) return;
+
+        var (property, amount) = (parts[0], int.Parse(parts[1]));
+
+        switch (property)
+        {
+            case "BodyX":
+                ActiveCell.BodyX += amount;
+                break;
+            case "BodyY":
+                ActiveCell.BodyY += amount;
+                break;
+            case "FaceX":
+                ActiveCell.FaceX += amount;
+                break;
+            case "FaceY":
+                ActiveCell.FaceY += amount;
+                break;
+            case "FaceAngle":
+                ActiveCell.FaceAngle = (ActiveCell.FaceAngle + amount + 360) % 360;
+                break;
+            case "ItemX":
+                ActiveCell.ItemX += amount;
+                break;
+            case "ItemY":
+                ActiveCell.ItemY += amount;
+                break;
+            case "ItemAngle":
+                ActiveCell.ItemAngle = (ActiveCell.ItemAngle + amount + 360) % 360;
+                break;
+        }
+
+        this.RaisePropertyChanged(nameof(ActiveCell));
     }
 } 

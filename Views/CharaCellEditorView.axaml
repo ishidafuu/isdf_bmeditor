@@ -44,7 +44,74 @@
                             CommandParameter="1"/>
                 </StackPanel>
 
-                <!-- 他のコントロールは後で追加 -->
+                <!-- 体の位置調整 -->
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock Text="体の位置" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto">
+                        <Button Grid.Row="0" Grid.Column="1" Content="↑"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="BodyY_-1"/>
+                        <Button Grid.Row="1" Grid.Column="0" Content="←"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="BodyX_-1"/>
+                        <Button Grid.Row="1" Grid.Column="2" Content="→"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="BodyX_1"/>
+                        <Button Grid.Row="1" Grid.Column="1" Content="↓"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="BodyY_1"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- 顔の位置調整 -->
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock Text="顔の位置" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <Button Grid.Row="0" Grid.Column="1" Content="↑"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="FaceY_-1"/>
+                        <Button Grid.Row="1" Grid.Column="0" Content="←"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="FaceX_-1"/>
+                        <Button Grid.Row="1" Grid.Column="2" Content="→"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="FaceX_1"/>
+                        <Button Grid.Row="1" Grid.Column="1" Content="↓"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="FaceY_1"/>
+                        <Button Grid.Row="2" Grid.Column="0" Content="↺"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="FaceAngle_-15"/>
+                        <Button Grid.Row="2" Grid.Column="2" Content="↻"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="FaceAngle_15"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- アイテムの位置調整 -->
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock Text="アイテムの位置" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <Button Grid.Row="0" Grid.Column="1" Content="↑"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="ItemY_-1"/>
+                        <Button Grid.Row="1" Grid.Column="0" Content="←"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="ItemX_-1"/>
+                        <Button Grid.Row="1" Grid.Column="2" Content="→"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="ItemX_1"/>
+                        <Button Grid.Row="1" Grid.Column="1" Content="↓"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="ItemY_1"/>
+                        <Button Grid.Row="2" Grid.Column="0" Content="↺"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="ItemAngle_-15"/>
+                        <Button Grid.Row="2" Grid.Column="2" Content="↻"
+                                Command="{Binding UpdateCellPositionCommand}"
+                                CommandParameter="ItemAngle_15"/>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>
