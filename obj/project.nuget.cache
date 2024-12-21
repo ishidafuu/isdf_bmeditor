@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "okLE4wVE+D4=",
+  "dgSpecHash": "/SIXcjKowe4=",
   "success": true,
   "projectFilePath": "/Users/ishidafuu/Documents/repository/isdf_bmeditor/isdf_bmeditor.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,7 @@
     "/Users/ishidafuu/.nuget/packages/harfbuzzsharp.nativeassets.win32/7.3.0.2/harfbuzzsharp.nativeassets.win32.7.3.0.2.nupkg.sha512",
     "/Users/ishidafuu/.nuget/packages/microcom.runtime/0.11.0/microcom.runtime.0.11.0.nupkg.sha512",
     "/Users/ishidafuu/.nuget/packages/reactiveui/20.1.1/reactiveui.20.1.1.nupkg.sha512",
-    "/Users/ishidafuu/.nuget/packages/sixlabors.imagesharp/3.1.1/sixlabors.imagesharp.3.1.1.nupkg.sha512",
+    "/Users/ishidafuu/.nuget/packages/sixlabors.imagesharp/3.1.2/sixlabors.imagesharp.3.1.2.nupkg.sha512",
     "/Users/ishidafuu/.nuget/packages/skiasharp/2.88.8/skiasharp.2.88.8.nupkg.sha512",
     "/Users/ishidafuu/.nuget/packages/skiasharp.nativeassets.linux/2.88.8/skiasharp.nativeassets.linux.2.88.8.nupkg.sha512",
     "/Users/ishidafuu/.nuget/packages/skiasharp.nativeassets.macos/2.88.8/skiasharp.nativeassets.macos.2.88.8.nupkg.sha512",
@@ -46,7 +46,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-5x7m-6737-26cr",
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.2 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-5x7m-6737-26cr",
       "libraryId": "SixLabors.ImageSharp",
       "targetGraphs": [
         "net8.0"
@@ -56,7 +56,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 高 重大度の脆弱性があります、https://github.com/advisories/GHSA-63p8-c4ww-9cg7",
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.2 に既知の 高 重大度の脆弱性があります、https://github.com/advisories/GHSA-63p8-c4ww-9cg7",
       "libraryId": "SixLabors.ImageSharp",
       "targetGraphs": [
         "net8.0"
@@ -66,7 +66,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 高 重大度の脆弱性があります、https://github.com/advisories/GHSA-65x7-c272-7g7r",
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.2 に既知の 高 重大度の脆弱性があります、https://github.com/advisories/GHSA-65x7-c272-7g7r",
       "libraryId": "SixLabors.ImageSharp",
       "targetGraphs": [
         "net8.0"
@@ -76,7 +76,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-g85r-6x2q-45w7",
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.2 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-g85r-6x2q-45w7",
       "libraryId": "SixLabors.ImageSharp",
       "targetGraphs": [
         "net8.0"
@@ -86,7 +86,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-qxrv-gp6x-rc23",
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.2 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-qxrv-gp6x-rc23",
       "libraryId": "SixLabors.ImageSharp",
       "targetGraphs": [
         "net8.0"
