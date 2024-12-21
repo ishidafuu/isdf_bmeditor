@@ -25,6 +25,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [/Users/ishidafuu/Documents/repository/isdf_bmeditor/Views/BaseMotionEditorView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/Users/ishidafuu/Documents/repository/isdf_bmeditor/Views/BattleMotionEditorView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/Users/ishidafuu/Documents/repository/isdf_bmeditor/Views/CharaCellEditorView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

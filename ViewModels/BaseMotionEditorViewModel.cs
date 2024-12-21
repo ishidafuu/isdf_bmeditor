@@ -40,4 +40,13 @@ public class BaseMotionEditorViewModel : ViewModelBase
     /// 現在選択中のコマ情報
     /// </summary>
     public Koma? ActiveKoma => ActiveMotion?.Komas.Count > _activeKomaIndex ? ActiveMotion.Komas[_activeKomaIndex] : null;
+
+    public void ChangeKomaIndex(int amount)
+    {
+        var newIndex = ActiveKomaIndex + amount;
+        if (ActiveMotion != null && newIndex >= 0 && newIndex < ActiveMotion.Komas.Count)
+        {
+            ActiveKomaIndex = newIndex;
+        }
+    }
 } 
