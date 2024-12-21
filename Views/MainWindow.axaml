@@ -1,29 +1,30 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:isdf_bmeditor.ViewModels"
-        xmlns:views="using:isdf_bmeditor.Views"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+        xmlns:views="clr-namespace:isdf_bmeditor.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="isdf_bmeditor.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="モーションエディタ">
+        Title="isdf_bmeditor">
 
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#2D2D2D" Padding="10">
-            <Button Content="キャラクターセル" 
-                    Command="{Binding SwitchToCharaCellEditor}"
-                    Margin="0,0,10,0"/>
-            <Button Content="基本モーション" 
-                    Command="{Binding SwitchToBaseMotionEditor}"
-                    Margin="0,0,10,0"/>
-            <Button Content="戦闘モーション" 
-                    Command="{Binding SwitchToBattleMotionEditor}"/>
+    <Grid>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Button Content="キャラクターセルエディタ" 
+                        Command="{Binding ShowCharaCellEditorCommand}"
+                        Margin="0,0,10,0"/>
+                <Button Content="基本モーションエディタ" 
+                        Command="{Binding ShowBaseMotionEditorCommand}"
+                        Margin="0,0,10,0"/>
+                <Button Content="戦闘モーションエディタ" 
+                        Command="{Binding ShowBattleMotionEditorCommand}"/>
+            </StackPanel>
+
+            <ContentControl Content="{Binding CurrentViewModel}"/>
         </StackPanel>
-
-        <ContentControl Content="{Binding CurrentViewModel}"/>
-    </DockPanel>
+    </Grid>
 
     <Window.DataTemplates>
         <DataTemplate DataType="{x:Type vm:CharaCellEditorViewModel}">

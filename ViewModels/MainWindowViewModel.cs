@@ -1,9 +1,8 @@
 using System;
-using System.Windows.Input;
 using ReactiveUI;
 using System.Reactive;
-using isdf_bmeditor.Services;
 using Avalonia.Platform.Storage;
+using Avalonia;
 
 namespace isdf_bmeditor.ViewModels;
 
@@ -12,15 +11,34 @@ namespace isdf_bmeditor.ViewModels;
 /// </summary>
 public class MainWindowViewModel : ViewModelBase
 {
-    private readonly ImageService _imageService;
+    private ViewModelBase _currentViewModel = null!;
     private readonly IStorageProvider _storageProvider;
-    private ViewModelBase _currentViewModel;
+    private readonly Services.ImageService _imageService;
 
-    public MainWindowViewModel(IStorageProvider storageProvider)
+    public MainWindowViewModel()
     {
-        _imageService = new ImageService();
-        _storageProvider = storageProvider;
-        // 初期表示のViewModelを設定
+        _imageService = new Services.ImageService();
+        _storageProvider = new StandardStorageProvider();
+
+        ShowCharaCellEditorCommand = ReactiveCommand.Create(() =>
+        {
+            var viewModel = new CharaCellEditorViewModel(_imageService, _storageProvider);
+            CurrentViewModel = viewModel;
+        });
+
+        ShowBaseMotionEditorCommand = ReactiveCommand.Create(() =>
+        {
+            var viewModel = new BaseMotionEditorViewModel();
+            CurrentViewModel = viewModel;
+        });
+
+        ShowBattleMotionEditorCommand = ReactiveCommand.Create(() =>
+        {
+            var viewModel = new BattleMotionEditorViewModel();
+            CurrentViewModel = viewModel;
+        });
+
+        // デフォルトでキャラクターセルエディタを表示
         CurrentViewModel = new CharaCellEditorViewModel(_imageService, _storageProvider);
     }
 
@@ -33,18 +51,7 @@ public class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref _currentViewModel, value);
     }
 
-    /// <summary>
-    /// キャラクターセルエディタに切り替え
-    /// </summary>
-    public void SwitchToCharaCellEditor() => CurrentViewModel = new CharaCellEditorViewModel(_imageService, _storageProvider);
-
-    /// <summary>
-    /// 基本モーションエディタに切り替え
-    /// </summary>
-    public void SwitchToBaseMotionEditor() => CurrentViewModel = new BaseMotionEditorViewModel();
-
-    /// <summary>
-    /// 戦闘モーションエディタに切り替え
-    /// </summary>
-    public void SwitchToBattleMotionEditor() => CurrentViewModel = new BattleMotionEditorViewModel();
+    public ReactiveCommand<Unit, Unit> ShowCharaCellEditorCommand { get; }
+    public ReactiveCommand<Unit, Unit> ShowBaseMotionEditorCommand { get; }
+    public ReactiveCommand<Unit, Unit> ShowBattleMotionEditorCommand { get; }
 } 

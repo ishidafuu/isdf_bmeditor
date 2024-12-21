@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace isdf_bmeditor.Models;
 
 public class Motion

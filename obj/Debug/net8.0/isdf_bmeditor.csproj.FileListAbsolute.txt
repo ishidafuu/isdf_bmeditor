@@ -5,6 +5,10 @@
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.AssemblyInfoInputs.cache
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.AssemblyInfo.cs
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.csproj.CoreCompileInputs.cache
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.sourcelink.json
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/Avalonia/isdf_bmeditor.dll
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/Avalonia/isdf_bmeditor.pdb
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/refint/Avalonia/isdf_bmeditor.dll
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/isdf_bmeditor
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/isdf_bmeditor.deps.json
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/isdf_bmeditor.runtimeconfig.json
@@ -64,9 +68,6 @@
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/runtimes/win-arm64/native/libSkiaSharp.dll
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/runtimes/win-x64/native/libSkiaSharp.dll
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/runtimes/win-x86/native/libSkiaSharp.dll
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/Avalonia/isdf_bmeditor.dll
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/Avalonia/isdf_bmeditor.pdb
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/refint/Avalonia/isdf_bmeditor.dll
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bme.CF29A00D.Up2Date
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.genruntimeconfig.cache
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/ref/isdf_bmeditor.dll

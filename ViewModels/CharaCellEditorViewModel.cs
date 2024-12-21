@@ -97,6 +97,11 @@ public class CharaCellEditorViewModel : ViewModelBase
     }
 
     /// <summary>
+    /// セル番号変更コマンド
+    /// </summary>
+    public ReactiveCommand<int, Unit> ChangeCellIndexCommand { get; }
+
+    /// <summary>
     /// セルインデックスを変更する
     /// </summary>
     /// <param name="amount">変更量（正の値で増加、負の値で減少）</param>
