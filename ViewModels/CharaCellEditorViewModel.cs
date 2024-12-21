@@ -28,6 +28,11 @@ public class CharaCellEditorViewModel : ViewModelBase
     {
         _imageService = imageService;
         _storageProvider = storageProvider;
+
+        // 初期セルの作成
+        _cells.Add(new Cell());
+        ActiveCellIndex = 0;
+
         ChangeCellIndexCommand = ReactiveCommand.Create<string>(param => 
         {
             if (int.TryParse(param, out int amount))

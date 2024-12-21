@@ -72,3 +72,8 @@
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.genruntimeconfig.cache
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/ref/isdf_bmeditor.dll
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/SixLabors.ImageSharp.dll
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/Assets/Characters/body.png
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/Assets/Characters/face.png
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/Assets/Characters/item.png
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/Assets/Characters/itemAll.png
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/Assets/Characters/README.md

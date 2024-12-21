@@ -2,6 +2,7 @@ namespace isdf_bmeditor.Models;
 
 public class Cell
 {
+    public int BodyIndex { get; set; }
     public int BodyX { get; set; }
     public int BodyY { get; set; }
     public int FaceIndex { get; set; }

@@ -22,7 +22,7 @@
                                       Y="{Binding ActiveCell.BodyY}"
                                       Angle="0"
                                       Scale="{Binding Scale}"
-                                      CellIndex="{Binding ActiveCellIndex}"
+                                      CellIndex="{Binding ActiveCell.BodyIndex}"
                                       CellSize="32,32"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
