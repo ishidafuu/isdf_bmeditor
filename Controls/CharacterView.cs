@@ -91,14 +91,23 @@ public class CharacterView : Control
         if (Image?.Bitmap == null) return;
 
         // セルのサイズと位置を計算
-        var cellsPerRow = (int)(Image.Width / CellSize.Width);
+        var cellsPerRow = (int)Math.Floor(Image.Width / CellSize.Width);
+        if (cellsPerRow <= 0) return;
+
         var row = CellIndex / cellsPerRow;
         var col = CellIndex % cellsPerRow;
+
+        // 画像の範囲をチェック
+        if (col * CellSize.Width >= Image.Width || row * CellSize.Height >= Image.Height)
+        {
+            return;
+        }
+
         var sourceRect = new Rect(
             col * CellSize.Width,
             row * CellSize.Height,
-            CellSize.Width,
-            CellSize.Height);
+            Math.Min(CellSize.Width, Image.Width - col * CellSize.Width),
+            Math.Min(CellSize.Height, Image.Height - row * CellSize.Height));
 
         using var _ = context.PushTransform(
             Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *
