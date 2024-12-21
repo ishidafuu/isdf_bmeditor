@@ -28,8 +28,8 @@ public class CharaCellEditorViewModel : ViewModelBase
         _storageProvider = storageProvider;
         ChangeCellIndexCommand = ReactiveCommand.Create<int>(ChangeCellIndex);
         UpdateCellPositionCommand = ReactiveCommand.Create<string>(UpdateCellPosition);
-        SaveCommand = ReactiveCommand.Create<string>(SaveCells);
-        LoadCommand = ReactiveCommand.Create<string>(LoadCells);
+        SaveCommand = ReactiveCommand.CreateFromTask<string>(SaveCells);
+        LoadCommand = ReactiveCommand.CreateFromTask<string>(LoadCells);
         AddCellCommand = ReactiveCommand.Create(AddCell);
         DeleteCellCommand = ReactiveCommand.Create(DeleteCell);
         SelectBodyImageCommand = ReactiveCommand.CreateFromTask(SelectBodyImage);
@@ -171,22 +171,60 @@ public class CharaCellEditorViewModel : ViewModelBase
     /// セルデータを保存する
     /// </summary>
     /// <param name="path">保存先のパス</param>
-    private void SaveCells(string path)
+    private async Task SaveCells(string defaultName)
     {
-        var data = new CellData { Cells = _cells };
-        data.Save(path);
+        var options = new FilePickerSaveOptions
+        {
+            Title = "セルデータを保存",
+            DefaultExtension = ".json",
+            ShowOverwritePrompt = true,
+            SuggestedFileName = defaultName,
+            FileTypeChoices = new[]
+            {
+                new FilePickerFileType("JSONファイル")
+                {
+                    Patterns = new[] { "*.json" },
+                    MimeTypes = new[] { "application/json" }
+                }
+            }
+        };
+
+        var file = await _storageProvider.SaveFilePickerAsync(options);
+        if (file != null)
+        {
+            var data = new CellData { Cells = _cells };
+            data.Save(file.Path.LocalPath);
+        }
     }
 
     /// <summary>
     /// セルデータを読み込む
     /// </summary>
     /// <param name="path">読み込むファイルのパス</param>
-    private void LoadCells(string path)
+    private async Task LoadCells(string _)
     {
-        var data = CellData.Load(path);
-        _cells = data.Cells;
-        ActiveCellIndex = 0;
-        this.RaisePropertyChanged(nameof(ActiveCell));
+        var options = new FilePickerOpenOptions
+        {
+            Title = "セルデータを読み込み",
+            AllowMultiple = false,
+            FileTypeFilter = new[]
+            {
+                new FilePickerFileType("JSONファイル")
+                {
+                    Patterns = new[] { "*.json" },
+                    MimeTypes = new[] { "application/json" }
+                }
+            }
+        };
+
+        var files = await _storageProvider.OpenFilePickerAsync(options);
+        if (files.Count > 0)
+        {
+            var data = CellData.Load(files[0].Path.LocalPath);
+            _cells = data.Cells;
+            ActiveCellIndex = 0;
+            this.RaisePropertyChanged(nameof(ActiveCell));
+        }
     }
 
     /// <summary>
