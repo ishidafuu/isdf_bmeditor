@@ -53,6 +53,18 @@ public class CharacterView : Control
         set => SetValue(AngleProperty, value);
     }
 
+    public static readonly StyledProperty<double> ScaleProperty =
+        AvaloniaProperty.Register<CharacterView, double>(nameof(Scale), 1.0);
+
+    /// <summary>
+    /// 表示倍率
+    /// </summary>
+    public double Scale
+    {
+        get => GetValue(ScaleProperty);
+        set => SetValue(ScaleProperty, value);
+    }
+
     /// <summary>
     /// 描画処理
     /// </summary>
@@ -62,6 +74,7 @@ public class CharacterView : Control
 
         using var _ = context.PushTransform(
             Matrix.CreateTranslation(-Image.Width / 2, -Image.Height / 2) *
+            Matrix.CreateScale(Scale, Scale) *
             Matrix.CreateRotation(Angle * Math.PI / 180) *
             Matrix.CreateTranslation(X + Image.Width / 2, Y + Image.Height / 2));
 

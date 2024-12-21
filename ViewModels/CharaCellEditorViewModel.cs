@@ -21,6 +21,7 @@ public class CharaCellEditorViewModel : ViewModelBase
     private ImageAsset? _bodyImage;
     private ImageAsset? _faceImage;
     private ImageAsset? _itemImage;
+    private double _scale = 1.0;
 
     public CharaCellEditorViewModel(ImageService imageService, IStorageProvider storageProvider)
     {
@@ -35,6 +36,7 @@ public class CharaCellEditorViewModel : ViewModelBase
         SelectBodyImageCommand = ReactiveCommand.CreateFromTask(SelectBodyImage);
         SelectFaceImageCommand = ReactiveCommand.CreateFromTask(SelectFaceImage);
         SelectItemImageCommand = ReactiveCommand.CreateFromTask(SelectItemImage);
+        UpdateScaleCommand = ReactiveCommand.Create<string>(UpdateScale);
     }
 
     /// <summary>
@@ -76,6 +78,15 @@ public class CharaCellEditorViewModel : ViewModelBase
     {
         get => _itemImage;
         private set => this.RaiseAndSetIfChanged(ref _itemImage, value);
+    }
+
+    /// <summary>
+    /// 表示倍率
+    /// </summary>
+    public double Scale
+    {
+        get => _scale;
+        set => this.RaiseAndSetIfChanged(ref _scale, value);
     }
 
     /// <summary>
@@ -335,5 +346,23 @@ public class CharaCellEditorViewModel : ViewModelBase
 
         var files = await _storageProvider.OpenFilePickerAsync(options);
         return files.Count > 0 ? files[0] : null;
+    }
+
+    /// <summary>
+    /// 拡大率変更コマンド
+    /// </summary>
+    public ReactiveCommand<string, Unit> UpdateScaleCommand { get; }
+
+    /// <summary>
+    /// 拡大率を変更する
+    /// </summary>
+    private void UpdateScale(string parameter)
+    {
+        var amount = double.Parse(parameter);
+        var newScale = Scale + amount;
+        if (newScale >= 0.1 && newScale <= 5.0)
+        {
+            Scale = newScale;
+        }
     }
 } 
