@@ -14,6 +14,7 @@
           "Avalonia.Fonts.Inter": "11.2.1",
           "Avalonia.ReactiveUI": "11.2.1",
           "Avalonia.Themes.Fluent": "11.2.1",
+          "SixLabors.ImageSharp": "3.1.2",
           "System.Reactive": "6.0.1"
         },
         "runtime": {
@@ -372,6 +373,14 @@
           }
         }
       },
+      "SixLabors.ImageSharp/3.1.2": {
+        "runtime": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.1.2.0"
+          }
+        }
+      },
       "SkiaSharp/2.88.8": {
         "dependencies": {
           "SkiaSharp.NativeAssets.Win32": "2.88.8",
@@ -658,6 +667,13 @@
       "sha512": "sha512-9hNPknWjijnaSWs6auypoXqUptPZcRpUypF+cf1zD50fgW+SEoQda502N3fVZ2eWPcaiUad+z6GaLwOWmUVHNw==",
       "path": "reactiveui/20.1.1",
       "hashPath": "reactiveui.20.1.1.nupkg.sha512"
+    },
+    "SixLabors.ImageSharp/3.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PYdR6GUI+gW6LBaAQKTik0Ai8oLpFAz3a/KrVusxoTg3kf7F3cuIqKMhJGsuQcmDHCF+iD81Pyn4cexyHrb1ZA==",
+      "path": "sixlabors.imagesharp/3.1.2",
+      "hashPath": "sixlabors.imagesharp.3.1.2.nupkg.sha512"
     },
     "SkiaSharp/2.88.8": {
       "type": "package",

@@ -6,6 +6,7 @@ using isdf_bmeditor.Models;
 using isdf_bmeditor.Services;
 using Avalonia.Platform.Storage;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace isdf_bmeditor.ViewModels;
 
@@ -53,9 +54,21 @@ public class CharaCellEditorViewModel : ViewModelBase
 
     private void LoadFixedImages()
     {
-        BodyImage = _imageService.LoadImage("Assets/Characters/body.png");
-        FaceImage = _imageService.LoadImage("Assets/Characters/face.png");
-        ItemImage = _imageService.LoadImage("Assets/Characters/item.png");
+        try
+        {
+            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var assetsPath = Path.Combine(baseDirectory, "Assets", "Characters");
+            Console.WriteLine($"Assets path: {assetsPath}");
+
+            BodyImage = _imageService.LoadImage(Path.Combine(assetsPath, "body.png"));
+            FaceImage = _imageService.LoadImage(Path.Combine(assetsPath, "face.png"));
+            ItemImage = _imageService.LoadImage(Path.Combine(assetsPath, "item.png"));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading fixed images: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+        }
     }
 
     /// <summary>

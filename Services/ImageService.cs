@@ -31,8 +31,18 @@ public class ImageService
         var asset = new ImageAsset();
         try
         {
+            var fullPath = Path.GetFullPath(path);
+            Console.WriteLine($"Loading image from: {fullPath}");
+
+            if (!File.Exists(fullPath))
+            {
+                Console.WriteLine($"Error: File not found at {fullPath}");
+                throw new FileNotFoundException($"Image file not found: {fullPath}");
+            }
+
             // ImageSharpを使用して画像を読み込む
-            using var image = Image.Load<Rgba32>(path);
+            using var image = Image.Load<Rgba32>(fullPath);
+            Console.WriteLine($"Image loaded successfully. Size: {image.Width}x{image.Height}");
             
             // マゼンタ色を透過に変換
             image.ProcessPixelRows(accessor =>
@@ -59,10 +69,13 @@ public class ImageService
             // AvaloniaのBitmapとして読み込む
             asset.Bitmap = new Bitmap(memoryStream);
             _imageCache[path] = asset;
+            Console.WriteLine($"Image processed and cached successfully");
             return asset;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            Console.WriteLine($"Error loading image: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
             asset.Dispose();
             throw;
         }

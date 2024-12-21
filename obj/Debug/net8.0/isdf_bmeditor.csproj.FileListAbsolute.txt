@@ -71,6 +71,4 @@
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bme.CF29A00D.Up2Date
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.genruntimeconfig.cache
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/ref/isdf_bmeditor.dll
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.dll
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/refint/isdf_bmeditor.dll
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.pdb
+/Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/SixLabors.ImageSharp.dll
