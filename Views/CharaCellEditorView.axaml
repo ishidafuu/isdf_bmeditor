@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:isdf_bmeditor.ViewModels"
              xmlns:controls="using:isdf_bmeditor.Controls"
+             xmlns:sys="using:System"
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
              x:Class="isdf_bmeditor.Views.CharaCellEditorView"
              x:CompileBindings="True"
@@ -50,10 +51,10 @@
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <TextBlock Text="セル番号:" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <Button Content="←" Command="{Binding ChangeCellIndexCommand}" 
-                            CommandParameter="-1" Margin="0,0,5,0"/>
+                            CommandParameter="{x:Static sys:Int32.MinusOne}" Margin="0,0,5,0"/>
                     <TextBlock Text="{Binding ActiveCellIndex}" VerticalAlignment="Center" Margin="0,0,5,0"/>
                     <Button Content="→" Command="{Binding ChangeCellIndexCommand}" 
-                            CommandParameter="1" Margin="0,0,10,0"/>
+                            CommandParameter="{x:Static sys:Int32.One}" Margin="0,0,10,0"/>
                     <Button Content="追加" 
                             Command="{Binding AddCellCommand}"
                             Margin="0,0,5,0"/>
