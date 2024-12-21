@@ -22,6 +22,8 @@ public class CharaCellEditorViewModel : ViewModelBase
         _imageService = imageService;
         ChangeCellIndexCommand = ReactiveCommand.Create<int>(ChangeCellIndex);
         UpdateCellPositionCommand = ReactiveCommand.Create<string>(UpdateCellPosition);
+        SaveCommand = ReactiveCommand.Create<string>(SaveCells);
+        LoadCommand = ReactiveCommand.Create<string>(LoadCells);
     }
 
     /// <summary>
@@ -141,6 +143,38 @@ public class CharaCellEditorViewModel : ViewModelBase
                 break;
         }
 
+        this.RaisePropertyChanged(nameof(ActiveCell));
+    }
+
+    /// <summary>
+    /// 保存コマンド
+    /// </summary>
+    public ReactiveCommand<string, Unit> SaveCommand { get; }
+
+    /// <summary>
+    /// 読み込みコマンド
+    /// </summary>
+    public ReactiveCommand<string, Unit> LoadCommand { get; }
+
+    /// <summary>
+    /// セルデータを保存する
+    /// </summary>
+    /// <param name="path">保存先のパス</param>
+    private void SaveCells(string path)
+    {
+        var data = new CellData { Cells = _cells };
+        data.Save(path);
+    }
+
+    /// <summary>
+    /// セルデータを読み込む
+    /// </summary>
+    /// <param name="path">読み込むファイルのパス</param>
+    private void LoadCells(string path)
+    {
+        var data = CellData.Load(path);
+        _cells = data.Cells;
+        ActiveCellIndex = 0;
         this.RaisePropertyChanged(nameof(ActiveCell));
     }
 } 
