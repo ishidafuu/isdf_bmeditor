@@ -23,7 +23,7 @@
                                       Angle="0"
                                       Scale="{Binding Scale}"
                                       CellIndex="{Binding ActiveCell.BodyIndex}"
-                                      CellSize="32,32"
+                                      CellSize="40,40"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
                 <controls:CharacterView Image="{Binding FaceImage}"
@@ -32,7 +32,7 @@
                                       Angle="{Binding ActiveCell.FaceAngle}"
                                       Scale="{Binding Scale}"
                                       CellIndex="{Binding ActiveCell.FaceIndex}"
-                                      CellSize="36,32"
+                                      CellSize="16,16"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
                 <controls:CharacterView Image="{Binding ItemImage}"
