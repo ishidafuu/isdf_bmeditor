@@ -10,7 +10,9 @@
         x:DataType="vm:MainWindowViewModel"
         Title="isdf_bmeditor"
         Background="Black"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="Manual"
+        Position="0,0"
+        Topmost="True">
 
     <Window.Styles>
         <Style Selector="Button">

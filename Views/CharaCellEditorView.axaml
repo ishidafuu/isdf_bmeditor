@@ -22,6 +22,8 @@
                                       Y="{Binding ActiveCell.BodyY}"
                                       Angle="0"
                                       Scale="{Binding Scale}"
+                                      CellIndex="{Binding ActiveCellIndex}"
+                                      CellSize="32,32"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
                 <controls:CharacterView Image="{Binding FaceImage}"
@@ -29,6 +31,8 @@
                                       Y="{Binding ActiveCell.FaceY}"
                                       Angle="{Binding ActiveCell.FaceAngle}"
                                       Scale="{Binding Scale}"
+                                      CellIndex="{Binding ActiveCell.FaceIndex}"
+                                      CellSize="32,32"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
                 <controls:CharacterView Image="{Binding ItemImage}"
@@ -36,6 +40,8 @@
                                       Y="{Binding ActiveCell.ItemY}"
                                       Angle="{Binding ActiveCell.ItemAngle}"
                                       Scale="{Binding Scale}"
+                                      CellIndex="{Binding ActiveCell.ItemIndex}"
+                                      CellSize="32,32"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
             </Grid>
