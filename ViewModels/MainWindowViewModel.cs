@@ -2,6 +2,7 @@ using System;
 using System.Windows.Input;
 using ReactiveUI;
 using System.Reactive;
+using isdf_bmeditor.Services;
 
 namespace isdf_bmeditor.ViewModels;
 
@@ -10,12 +11,14 @@ namespace isdf_bmeditor.ViewModels;
 /// </summary>
 public class MainWindowViewModel : ViewModelBase
 {
+    private readonly ImageService _imageService;
     private ViewModelBase _currentViewModel;
 
     public MainWindowViewModel()
     {
+        _imageService = new ImageService();
         // 初期表示のViewModelを設定
-        CurrentViewModel = new CharaCellEditorViewModel();
+        CurrentViewModel = new CharaCellEditorViewModel(_imageService);
     }
 
     /// <summary>
@@ -30,7 +33,7 @@ public class MainWindowViewModel : ViewModelBase
     /// <summary>
     /// キャラクターセルエディタに切り替え
     /// </summary>
-    public void SwitchToCharaCellEditor() => CurrentViewModel = new CharaCellEditorViewModel();
+    public void SwitchToCharaCellEditor() => CurrentViewModel = new CharaCellEditorViewModel(_imageService);
 
     /// <summary>
     /// 基本モーションエディタに切り替え

@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:isdf_bmeditor.ViewModels"
+             xmlns:controls="using:isdf_bmeditor.Controls"
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
              x:Class="isdf_bmeditor.Views.CharaCellEditorView"
              x:CompileBindings="True"
@@ -14,12 +15,17 @@
                 BorderBrush="Gray" 
                 BorderThickness="1" 
                 Margin="5">
-            <Panel>
-                <!-- キャラクター表示エリア（後で実装） -->
-                <TextBlock Text="キャラクタービュー"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"/>
-            </Panel>
+            <Grid>
+                <controls:CharacterView Image="{Binding BodyImage}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                <controls:CharacterView Image="{Binding FaceImage}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                <controls:CharacterView Image="{Binding ItemImage}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+            </Grid>
         </Border>
 
         <!-- 右側：コントロールビュー -->
