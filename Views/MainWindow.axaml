@@ -4,26 +4,48 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:isdf_bmeditor.Views"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+        Width="1280" Height="720"
         x:Class="isdf_bmeditor.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Title="isdf_bmeditor">
+        Title="isdf_bmeditor"
+        Background="Black"
+        WindowStartupLocation="CenterScreen">
 
-    <Grid>
-        <StackPanel Margin="10">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <Button Content="キャラクターセルエディタ" 
-                        Command="{Binding ShowCharaCellEditorCommand}"
-                        Margin="0,0,10,0"/>
-                <Button Content="基本モーションエディタ" 
-                        Command="{Binding ShowBaseMotionEditorCommand}"
-                        Margin="0,0,10,0"/>
-                <Button Content="戦闘モーションエディタ" 
-                        Command="{Binding ShowBattleMotionEditorCommand}"/>
-            </StackPanel>
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#333333"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#444444"/>
+        </Style>
+        <Style Selector="Button:pressed">
+            <Setter Property="Background" Value="#222222"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid Margin="20">
+        <DockPanel>
+            <Border DockPanel.Dock="Top" 
+                    BorderBrush="#333333" 
+                    BorderThickness="0,0,0,1" 
+                    Padding="0,0,0,10" 
+                    Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Button Content="キャラクターセルエディタ" 
+                            Command="{Binding ShowCharaCellEditorCommand}"/>
+                    <Button Content="基本モーションエディタ" 
+                            Command="{Binding ShowBaseMotionEditorCommand}"/>
+                    <Button Content="戦闘モーションエディタ" 
+                            Command="{Binding ShowBattleMotionEditorCommand}"/>
+                </StackPanel>
+            </Border>
 
             <ContentControl Content="{Binding CurrentViewModel}"/>
-        </StackPanel>
+        </DockPanel>
     </Grid>
 
     <Window.DataTemplates>
