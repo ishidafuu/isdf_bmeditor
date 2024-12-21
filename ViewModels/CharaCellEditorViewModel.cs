@@ -24,6 +24,8 @@ public class CharaCellEditorViewModel : ViewModelBase
         UpdateCellPositionCommand = ReactiveCommand.Create<string>(UpdateCellPosition);
         SaveCommand = ReactiveCommand.Create<string>(SaveCells);
         LoadCommand = ReactiveCommand.Create<string>(LoadCells);
+        AddCellCommand = ReactiveCommand.Create(AddCell);
+        DeleteCellCommand = ReactiveCommand.Create(DeleteCell);
     }
 
     /// <summary>
@@ -175,6 +177,42 @@ public class CharaCellEditorViewModel : ViewModelBase
         var data = CellData.Load(path);
         _cells = data.Cells;
         ActiveCellIndex = 0;
+        this.RaisePropertyChanged(nameof(ActiveCell));
+    }
+
+    /// <summary>
+    /// セル追加コマンド
+    /// </summary>
+    public ReactiveCommand<Unit, Unit> AddCellCommand { get; }
+
+    /// <summary>
+    /// セル削除コマンド
+    /// </summary>
+    public ReactiveCommand<Unit, Unit> DeleteCellCommand { get; }
+
+    /// <summary>
+    /// 新規セルを追加する
+    /// </summary>
+    private void AddCell()
+    {
+        _cells.Add(new Cell());
+        ActiveCellIndex = _cells.Count - 1;
+        this.RaisePropertyChanged(nameof(ActiveCell));
+    }
+
+    /// <summary>
+    /// 現在選択中のセルを削除する
+    /// </summary>
+    private void DeleteCell()
+    {
+        if (_cells.Count == 0 || ActiveCellIndex < 0 || ActiveCellIndex >= _cells.Count)
+            return;
+
+        _cells.RemoveAt(ActiveCellIndex);
+        if (ActiveCellIndex >= _cells.Count)
+        {
+            ActiveCellIndex = Math.Max(0, _cells.Count - 1);
+        }
         this.RaisePropertyChanged(nameof(ActiveCell));
     }
 } 
