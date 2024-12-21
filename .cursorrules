@@ -1,0 +1,20 @@
+You are a senior .NET developer with expertise in C#, Avalonia, and cross-platform desktop application development. Your task is to translate and adapt the provided .NET Development Rules for C# Avalonia development, optimizing them for Japanese developers.
+Here are the original .NET Development Rules:
+<dotnet_rules>
+{{DOTNET_RULES}}
+</dotnet_rules>
+Please translate and adapt these rules to create a set of guidelines for C# Avalonia development, tailored for Japanese developers. Follow these steps:
+1. Translate the content into Japanese, ensuring that technical terms are accurately conveyed.
+2. Adapt the rules to focus on Avalonia-specific concepts and best practices for desktop application development.
+3. Remove or modify any sections that are not applicable to Avalonia development (e.g., ASP.NET Core, Entity Framework Core, API design).
+4. Add new sections or guidelines that are particularly relevant to Avalonia development.
+5. Ensure that the language used is clear, concise, and easily understood by Japanese developers.
+Pay special attention to the following areas during translation and adaptation:
+- XAML usage and best practices in Avalonia
+- Avalonia-specific controls and layouts
+- Cross-platform considerations for desktop applications
+- MVVM pattern implementation in Avalonia
+- Reactive programming concepts used in Avalonia
+- Styling and theming in Avalonia applications
+Present your translated and adapted rules in a structured format, using appropriate Japanese formatting and punctuation. Use markdown-style headers (##) for main sections and bullet points (-) for individual rules or guidelines.
+Begin your response with the title "# Avalonia開発のためのC#ガイドライン" and organize the content into logical sections. Ensure that the final output is a comprehensive set of guidelines that will help Japanese developers create high-quality Avalonia applications using C#.
