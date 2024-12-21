@@ -63,8 +63,11 @@ public class ImageService
 
             // メモリストリームに保存（PNG形式で保存して透過を維持）
             using var memoryStream = new MemoryStream();
-            var encoder = new SixLabors.ImageSharp.Formats.Png.PngEncoder();
-            encoder.ColorType = SixLabors.ImageSharp.Formats.Png.PngColorType.RgbWithAlpha;
+            var encoder = new SixLabors.ImageSharp.Formats.Png.PngEncoder()
+            {
+                ColorType = SixLabors.ImageSharp.Formats.Png.PngColorType.RgbWithAlpha,
+                BitDepth = SixLabors.ImageSharp.Formats.Png.PngBitDepth.Bit8,
+            };
             image.Save(memoryStream, encoder);
             memoryStream.Position = 0;
 

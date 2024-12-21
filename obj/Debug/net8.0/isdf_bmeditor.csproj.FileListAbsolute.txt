@@ -77,6 +77,3 @@
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/Assets/Characters/item.png
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/Assets/Characters/itemAll.png
 /Users/ishidafuu/Documents/repository/isdf_bmeditor/bin/Debug/net8.0/Assets/Characters/README.md
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.dll
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/refint/isdf_bmeditor.dll
-/Users/ishidafuu/Documents/repository/isdf_bmeditor/obj/Debug/net8.0/isdf_bmeditor.pdb
