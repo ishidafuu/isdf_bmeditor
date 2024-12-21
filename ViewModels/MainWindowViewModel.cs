@@ -13,7 +13,7 @@ namespace isdf_bmeditor.ViewModels;
 /// </summary>
 public class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase _currentViewModel = null!;
+    private ViewModelBase? _currentViewModel;
     private IStorageProvider? _storageProvider;
     private readonly Services.ImageService _imageService;
 
@@ -40,7 +40,12 @@ public class MainWindowViewModel : ViewModelBase
             CurrentViewModel = viewModel;
         });
 
-        // デフォルトでキャラクターセルエディタを表示
+        // コンストラクタでは初期ViewModelを設定しない
+        // 代わりにInitializeメソッドを用意する
+    }
+
+    public void Initialize()
+    {
         InitializeStorageProviderIfNeeded();
         CurrentViewModel = new CharaCellEditorViewModel(_imageService, _storageProvider!);
     }
@@ -67,7 +72,7 @@ public class MainWindowViewModel : ViewModelBase
     /// <summary>
     /// 現在表示中のViewModel
     /// </summary>
-    public ViewModelBase CurrentViewModel
+    public ViewModelBase? CurrentViewModel
     {
         get => _currentViewModel;
         private set => this.RaiseAndSetIfChanged(ref _currentViewModel, value);

@@ -17,10 +17,12 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            var mainViewModel = new MainWindowViewModel();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel()
+                DataContext = mainViewModel
             };
+            mainViewModel.Initialize();
         }
 
         base.OnFrameworkInitializationCompleted();
