@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:isdf_bmeditor.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+             x:Class="isdf_bmeditor.Views.CharaCellEditorView"
+             x:DataType="vm:CharaCellEditorViewModel">
+    
+    <Grid ColumnDefinitions="*, *">
+        <!-- 左側：キャラクタービュー -->
+        <Border Grid.Column="0" 
+                BorderBrush="Gray" 
+                BorderThickness="1" 
+                Margin="5">
+            <Panel>
+                <!-- キャラクター表示エリア（後で実装） -->
+                <TextBlock Text="キャラクタービュー"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"/>
+            </Panel>
+        </Border>
+
+        <!-- 右側：コントロールビュー -->
+        <Border Grid.Column="1" 
+                BorderBrush="Gray" 
+                BorderThickness="1" 
+                Margin="5">
+            <StackPanel Margin="10">
+                <!-- セル番号コントロール -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="セル番号:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <Button Content="←" Command="{Binding ChangeCellIndex}" 
+                            CommandParameter="-1" Margin="0,0,5,0"/>
+                    <TextBlock Text="{Binding ActiveCellIndex}" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <Button Content="→" Command="{Binding ChangeCellIndex}" 
+                            CommandParameter="1"/>
+                </StackPanel>
+
+                <!-- 他のコントロールは後で追加 -->
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl> 

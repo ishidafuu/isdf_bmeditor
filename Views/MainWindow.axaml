@@ -24,4 +24,16 @@
         <ContentControl Content="{Binding CurrentViewModel}"/>
     </DockPanel>
 
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:CharaCellEditorViewModel}">
+            <views:CharaCellEditorView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:BaseMotionEditorViewModel}">
+            <views:BaseMotionEditorView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:BattleMotionEditorViewModel}">
+            <views:BattleMotionEditorView />
+        </DataTemplate>
+    </Window.DataTemplates>
+
 </Window> 

@@ -22,5 +22,11 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [/Users/ishidafuu/Documents/repository/isdf_bmeditor/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/Users/ishidafuu/Documents/repository/isdf_bmeditor/Views/BaseMotionEditorView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/Users/ishidafuu/Documents/repository/isdf_bmeditor/Views/CharaCellEditorView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/Users/ishidafuu/Documents/repository/isdf_bmeditor/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
