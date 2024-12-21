@@ -496,6 +496,22 @@
           }
         }
       },
+      "SixLabors.ImageSharp/3.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/SixLabors.ImageSharp.props": {}
+        }
+      },
       "SkiaSharp/2.88.8": {
         "type": "package",
         "dependencies": {
@@ -1375,6 +1391,22 @@
         "reactiveui.nuspec"
       ]
     },
+    "SixLabors.ImageSharp/3.1.1": {
+      "sha512": "AItH9C5CtUHn40ev2e683p9IvuWJvL9O9OZrGgvo3vSz5IOdLm5N3K1hC8e2wHb7wkMjTY+KIzXt6zrsq1LKig==",
+      "type": "package",
+      "path": "sixlabors.imagesharp/3.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "build/SixLabors.ImageSharp.props",
+        "lib/net6.0/SixLabors.ImageSharp.dll",
+        "lib/net6.0/SixLabors.ImageSharp.xml",
+        "sixlabors.imagesharp.128.png",
+        "sixlabors.imagesharp.3.1.1.nupkg.sha512",
+        "sixlabors.imagesharp.nuspec"
+      ]
+    },
     "SkiaSharp/2.88.8": {
       "sha512": "bRkp3uKp5ZI8gXYQT57uKwil1uobb2p8c69n7v5evlB/2JNcMAXVcw9DZAP5Ig3WSvgzGm2YSn27UVeOi05NlA==",
       "type": "package",
@@ -1738,6 +1770,7 @@
       "Avalonia.Fonts.Inter >= 11.2.1",
       "Avalonia.ReactiveUI >= 11.2.1",
       "Avalonia.Themes.Fluent >= 11.2.1",
+      "SixLabors.ImageSharp >= 3.1.1",
       "System.Reactive >= 6.0.1"
     ]
   },
@@ -1807,6 +1840,10 @@
             "target": "Package",
             "version": "[11.2.1, )"
           },
+          "SixLabors.ImageSharp": {
+            "target": "Package",
+            "version": "[3.1.1, )"
+          },
           "System.Reactive": {
             "target": "Package",
             "version": "[6.0.1, )"
@@ -1831,5 +1868,57 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-5x7m-6737-26cr",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 高 重大度の脆弱性があります、https://github.com/advisories/GHSA-63p8-c4ww-9cg7",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 高 重大度の脆弱性があります、https://github.com/advisories/GHSA-65x7-c272-7g7r",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-g85r-6x2q-45w7",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "パッケージ 'SixLabors.ImageSharp' 3.1.1 に既知の 中 重大度の脆弱性があります、https://github.com/advisories/GHSA-qxrv-gp6x-rc23",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

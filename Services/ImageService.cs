@@ -3,6 +3,9 @@ using isdf_bmeditor.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
 
 namespace isdf_bmeditor.Services;
 
@@ -28,8 +31,29 @@ public class ImageService
         var asset = new ImageAsset();
         try
         {
-            using var stream = File.OpenRead(path);
-            asset.Bitmap = new Bitmap(stream);
+            // ImageSharpを使用して画像を読み込む
+            using var image = Image.Load<Rgba32>(path);
+            
+            // マゼンタ色を透過に変換
+            image.Mutate(x => x.ProcessPixelRowsAsVector4((row, point) =>
+            {
+                for (int x = 0; x < row.Length; x++)
+                {
+                    ref var pixel = ref row[x];
+                    if (pixel.R == 255 && pixel.G == 0 && pixel.B == 255)
+                    {
+                        pixel.A = 0;
+                    }
+                }
+            }));
+
+            // メモリストリームに保存
+            using var memoryStream = new MemoryStream();
+            image.SaveAsPng(memoryStream);
+            memoryStream.Position = 0;
+
+            // AvaloniaのBitmapとして読み込む
+            asset.Bitmap = new Bitmap(memoryStream);
             _imageCache[path] = asset;
             return asset;
         }
