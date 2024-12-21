@@ -5,6 +5,7 @@
              xmlns:vm="using:isdf_bmeditor.ViewModels"
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
              x:Class="isdf_bmeditor.Views.BaseMotionEditorView"
+             x:CompileBindings="True"
              x:DataType="vm:BaseMotionEditorViewModel">
     
     <Grid ColumnDefinitions="*, *">
