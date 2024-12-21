@@ -161,43 +161,71 @@ public class CharaCellEditorViewModel : ViewModelBase
     /// </summary>
     private void UpdateCellPosition(string parameter)
     {
-        if (ActiveCell == null) return;
+        if (ActiveCell == null)
+        {
+            Console.WriteLine("ActiveCell is null");
+            return;
+        }
 
         var parts = parameter.Split('_');
-        if (parts.Length != 2) return;
+        if (parts.Length != 2)
+        {
+            Console.WriteLine($"Invalid parameter format: {parameter}");
+            return;
+        }
 
-        if (!int.TryParse(parts[1], out int amount)) return;
+        if (!int.TryParse(parts[1], out int amount))
+        {
+            Console.WriteLine($"Invalid amount format: {parts[1]}");
+            return;
+        }
+
+        Console.WriteLine($"Updating position: {parameter}, Current values - BodyX:{ActiveCell.BodyX}, BodyY:{ActiveCell.BodyY}, FaceX:{ActiveCell.FaceX}, FaceY:{ActiveCell.FaceY}, ItemX:{ActiveCell.ItemX}, ItemY:{ActiveCell.ItemY}");
 
         var property = parts[0];
         switch (property)
         {
             case "BodyX":
                 ActiveCell.BodyX += amount;
+                Console.WriteLine($"Updated BodyX to: {ActiveCell.BodyX}");
                 break;
             case "BodyY":
                 ActiveCell.BodyY += amount;
+                Console.WriteLine($"Updated BodyY to: {ActiveCell.BodyY}");
                 break;
             case "FaceX":
                 ActiveCell.FaceX += amount;
+                Console.WriteLine($"Updated FaceX to: {ActiveCell.FaceX}");
                 break;
             case "FaceY":
                 ActiveCell.FaceY += amount;
+                Console.WriteLine($"Updated FaceY to: {ActiveCell.FaceY}");
                 break;
             case "FaceAngle":
                 ActiveCell.FaceAngle = (ActiveCell.FaceAngle + amount + 360) % 360;
+                Console.WriteLine($"Updated FaceAngle to: {ActiveCell.FaceAngle}");
                 break;
             case "ItemX":
                 ActiveCell.ItemX += amount;
+                Console.WriteLine($"Updated ItemX to: {ActiveCell.ItemX}");
                 break;
             case "ItemY":
                 ActiveCell.ItemY += amount;
+                Console.WriteLine($"Updated ItemY to: {ActiveCell.ItemY}");
                 break;
             case "ItemAngle":
                 ActiveCell.ItemAngle = (ActiveCell.ItemAngle + amount + 360) % 360;
+                Console.WriteLine($"Updated ItemAngle to: {ActiveCell.ItemAngle}");
+                break;
+            default:
+                Console.WriteLine($"Unknown property: {property}");
                 break;
         }
 
+        // 変更を通知
         this.RaisePropertyChanged(nameof(ActiveCell));
+        // 個別のプロパティ変更も通知
+        this.RaisePropertyChanged($"ActiveCell.{property}");
     }
 
     /// <summary>
