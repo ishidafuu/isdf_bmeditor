@@ -9,6 +9,7 @@ public class Cell
     public int FaceX { get; set; }
     public int FaceY { get; set; }
     public int FacePriority { get; set; }
+    public int ItemIndex { get; set; }
     public int ItemAngle { get; set; }
     public int ItemX { get; set; }
     public int ItemY { get; set; }
