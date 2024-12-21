@@ -77,18 +77,25 @@ public class CharaCellEditorViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// 現在選択中のセルインデックス
+    /// 現在選択中のセル
+    /// </summary>
+    public Cell? ActiveCell
+    {
+        get => _cells.Count > _activeCellIndex ? _cells[_activeCellIndex] : null;
+    }
+
+    /// <summary>
+    /// 現在選択中のセルのインデックス
     /// </summary>
     public int ActiveCellIndex
     {
         get => _activeCellIndex;
-        set => this.RaiseAndSetIfChanged(ref _activeCellIndex, value);
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _activeCellIndex, value);
+            this.RaisePropertyChanged(nameof(ActiveCell));
+        }
     }
-
-    /// <summary>
-    /// 現在選択中のセル情報
-    /// </summary>
-    public Cell? ActiveCell => _cells.Count > _activeCellIndex ? _cells[_activeCellIndex] : null;
 
     /// <summary>
     /// 体の画像
