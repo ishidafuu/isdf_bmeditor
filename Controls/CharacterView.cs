@@ -11,6 +11,19 @@ namespace isdf_bmeditor.Controls;
 /// </summary>
 public class CharacterView : Control
 {
+    static CharacterView()
+    {
+        AffectsRender<CharacterView>(
+            ImageProperty,
+            XProperty,
+            YProperty,
+            AngleProperty,
+            CellIndexProperty,
+            CellSizeProperty,
+            ScaleProperty
+        );
+    }
+
     /// <summary>
     /// 表示する画像
     /// </summary>
@@ -81,6 +94,22 @@ public class CharacterView : Control
     {
         get => GetValue(ScaleProperty);
         set => SetValue(ScaleProperty, value);
+    }
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        
+        if (change.Property == XProperty ||
+            change.Property == YProperty ||
+            change.Property == AngleProperty ||
+            change.Property == CellIndexProperty ||
+            change.Property == CellSizeProperty ||
+            change.Property == ScaleProperty ||
+            change.Property == ImageProperty)
+        {
+            InvalidateVisual();
+        }
     }
 
     /// <summary>
