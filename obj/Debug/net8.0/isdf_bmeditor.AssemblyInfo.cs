@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("isdf_bmeditor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d03e931001325ab2a2a6752e8e052b2d61cc7e23")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae7141b87d4633e81b7bb49289d838e38a0f564d")]
 [assembly: System.Reflection.AssemblyProductAttribute("isdf_bmeditor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("isdf_bmeditor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

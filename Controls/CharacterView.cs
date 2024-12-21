@@ -35,6 +35,12 @@ public class CharacterView : Control
     public static readonly StyledProperty<double> AngleProperty =
         AvaloniaProperty.Register<CharacterView, double>(nameof(Angle));
 
+    public static readonly StyledProperty<int> CellIndexProperty =
+        AvaloniaProperty.Register<CharacterView, int>(nameof(CellIndex));
+
+    public static readonly StyledProperty<Size> CellSizeProperty =
+        AvaloniaProperty.Register<CharacterView, Size>(nameof(CellSize), new Size(32, 32));
+
     public double X
     {
         get => GetValue(XProperty);
@@ -51,6 +57,18 @@ public class CharacterView : Control
     {
         get => GetValue(AngleProperty);
         set => SetValue(AngleProperty, value);
+    }
+
+    public int CellIndex
+    {
+        get => GetValue(CellIndexProperty);
+        set => SetValue(CellIndexProperty, value);
+    }
+
+    public Size CellSize
+    {
+        get => GetValue(CellSizeProperty);
+        set => SetValue(CellSizeProperty, value);
     }
 
     public static readonly StyledProperty<double> ScaleProperty =
@@ -72,12 +90,25 @@ public class CharacterView : Control
     {
         if (Image?.Bitmap == null) return;
 
+        // セルのサイズと位置を計算
+        var cellsPerRow = (int)(Image.Width / CellSize.Width);
+        var row = CellIndex / cellsPerRow;
+        var col = CellIndex % cellsPerRow;
+        var sourceRect = new Rect(
+            col * CellSize.Width,
+            row * CellSize.Height,
+            CellSize.Width,
+            CellSize.Height);
+
         using var _ = context.PushTransform(
-            Matrix.CreateTranslation(-Image.Width / 2, -Image.Height / 2) *
+            Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *
             Matrix.CreateScale(Scale, Scale) *
             Matrix.CreateRotation(Angle * Math.PI / 180) *
-            Matrix.CreateTranslation(X + Image.Width / 2, Y + Image.Height / 2));
+            Matrix.CreateTranslation(X + CellSize.Width / 2, Y + CellSize.Height / 2));
 
-        context.DrawImage(Image.Bitmap, new Rect(0, 0, Image.Width, Image.Height));
+        context.DrawImage(
+            Image.Bitmap,
+            sourceRect,
+            new Rect(0, 0, CellSize.Width, CellSize.Height));
     }
 } 
