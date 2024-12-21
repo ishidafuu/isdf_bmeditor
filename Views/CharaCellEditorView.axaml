@@ -17,12 +17,21 @@
                 Margin="5">
             <Grid>
                 <controls:CharacterView Image="{Binding BodyImage}"
+                                      X="{Binding ActiveCell.BodyX}"
+                                      Y="{Binding ActiveCell.BodyY}"
+                                      Angle="0"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
                 <controls:CharacterView Image="{Binding FaceImage}"
+                                      X="{Binding ActiveCell.FaceX}"
+                                      Y="{Binding ActiveCell.FaceY}"
+                                      Angle="{Binding ActiveCell.FaceAngle}"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
                 <controls:CharacterView Image="{Binding ItemImage}"
+                                      X="{Binding ActiveCell.ItemX}"
+                                      Y="{Binding ActiveCell.ItemY}"
+                                      Angle="{Binding ActiveCell.ItemAngle}"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
             </Grid>
