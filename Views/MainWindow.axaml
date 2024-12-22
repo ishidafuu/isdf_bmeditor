@@ -11,9 +11,9 @@
         Title="isdf_bmeditor"
         Background="Black"
         WindowStartupLocation="Manual"
-        Position="{Binding WindowPosition, Mode=TwoWay}"
         Topmost="True"
-        Closing="OnClosing">
+        Closing="OnClosing"
+        Name="MainWindowControl">
 
     <Window.Styles>
         <Style Selector="Button">
