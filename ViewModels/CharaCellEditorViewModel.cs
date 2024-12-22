@@ -212,8 +212,13 @@ public class CharaCellEditorViewModel : ViewModelBase
                 Console.WriteLine($"Updated ItemY to: {ActiveCell.ItemY}");
                 break;
             case "ItemAngle":
-                ActiveCell.ItemAngle = (ActiveCell.ItemAngle + amount + 360) % 360;
-                Console.WriteLine($"Updated ItemAngle to: {ActiveCell.ItemAngle}");
+                // 角度を8方向（0-7）に制限
+                var newItemAngle = (ActiveCell.ItemAngle + amount) % 8;
+                if (newItemAngle < 0) newItemAngle += 8;
+                ActiveCell.ItemAngle = newItemAngle;
+                // 角度に応じてインデックスを更新
+                ActiveCell.ItemIndex = newItemAngle;
+                Console.WriteLine($"Updated ItemAngle to: {ActiveCell.ItemAngle}, ItemIndex to: {ActiveCell.ItemIndex}");
                 break;
             default:
                 Console.WriteLine($"Unknown property: {property}");

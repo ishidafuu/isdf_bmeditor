@@ -160,7 +160,13 @@ public class CharacterView : Control
                        Matrix.CreateTranslation(0, -4 * Scale) *  // 4ピクセル上にオフセット（スケール適用）
                        Matrix.CreateTranslation(scaledX, scaledY);  // 最終位置に移動
         }
-        else  // ボディおよび、アイテム
+        else if (CellSize.Width == 32 && CellSize.Height == 32)  // アイテム
+        {
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *  // 中心を原点に移動
+                       Matrix.CreateScale(Scale, Scale) *  // スケーリング
+                       Matrix.CreateTranslation(scaledX, scaledY);  // 最終位置に移動
+        }
+        else  // ボディ
         {
             transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *  // 中心を原点に移動
                        Matrix.CreateRotation(Angle * Math.PI / 180) *  // 回転
