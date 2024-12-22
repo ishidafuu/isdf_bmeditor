@@ -151,7 +151,6 @@ public class CharacterView : Control
         var scaledY = Y * Scale;
 
         // 画像タイプに応じた変換行列を設定
-        // ボディ（40x40）、フェイス（16x16）、アイテム（32x32）で判定
         Matrix transform;
         if (CellSize.Width == 16 && CellSize.Height == 16)  // フェイス
         {
@@ -160,7 +159,7 @@ public class CharacterView : Control
                        Matrix.CreateRotation(Angle * Math.PI / 180) *
                        Matrix.CreateTranslation(scaledX, scaledY);
         }
-        else  // アイテム（32x32）
+        else  // ボディおよび、アイテム
         {
             transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *  // 左右中心、上下中心
                        Matrix.CreateScale(Scale, Scale) *
