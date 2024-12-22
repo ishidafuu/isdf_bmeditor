@@ -2,6 +2,7 @@ using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using isdf_bmeditor.Models;
 
 namespace isdf_bmeditor.Controls;
