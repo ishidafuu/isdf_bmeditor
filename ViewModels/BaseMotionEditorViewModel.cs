@@ -17,7 +17,13 @@ public class BaseMotionEditorViewModel : ViewModelBase
 
     public BaseMotionEditorViewModel()
     {
-        ChangeKomaIndexCommand = ReactiveCommand.Create<int>(ChangeKomaIndex);
+        ChangeKomaIndexCommand = ReactiveCommand.Create<string>(param => 
+        {
+            if (int.TryParse(param, out int amount))
+            {
+                ChangeKomaIndex(amount);
+            }
+        });
     }
 
     /// <summary>
@@ -60,7 +66,7 @@ public class BaseMotionEditorViewModel : ViewModelBase
     /// <summary>
     /// コマインデックス変更コマンド
     /// </summary>
-    public ReactiveCommand<int, Unit> ChangeKomaIndexCommand { get; }
+    public ReactiveCommand<string, Unit> ChangeKomaIndexCommand { get; }
 
     /// <summary>
     /// コマインデックスを変更する
