@@ -38,11 +38,11 @@
                     Padding="0,0,0,10" 
                     Margin="0,0,0,20">
                 <StackPanel Orientation="Horizontal" Spacing="10">
-                    <Button Content="キャラクターセルエディタ" 
+                    <Button Content="Character Cell Editor" 
                             Command="{Binding ShowCharaCellEditorCommand}"/>
-                    <Button Content="基本モーションエディタ" 
+                    <Button Content="Base Motion Editor" 
                             Command="{Binding ShowBaseMotionEditorCommand}"/>
-                    <Button Content="戦闘モーションエディタ" 
+                    <Button Content="Battle Motion Editor" 
                             Command="{Binding ShowBattleMotionEditorCommand}"/>
                 </StackPanel>
             </Border>

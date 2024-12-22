@@ -16,7 +16,7 @@
                 Margin="5">
             <Panel>
                 <!-- キャラクター表示エリア（後で実装） -->
-                <TextBlock Text="キャラクタービュー"
+                <TextBlock Text="Character View"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center"/>
             </Panel>
@@ -30,7 +30,7 @@
             <StackPanel Margin="10">
                 <!-- モーション選択コントロール -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="モーション:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="Motion:" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <ComboBox Width="200"
                              ItemsSource="{Binding Motions}"
                              SelectedIndex="{Binding ActiveMotionIndex}"/>
@@ -38,7 +38,7 @@
 
                 <!-- コマ選択コントロール -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="コマ:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="Frame:" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <Button Content="←" Command="{Binding ChangeKomaIndexCommand}" 
                             CommandParameter="-1" Margin="0,0,5,0"/>
                     <TextBlock Text="{Binding ActiveKomaIndex}" VerticalAlignment="Center" Margin="0,0,5,0"/>

@@ -70,22 +70,22 @@
             <StackPanel Margin="10">
                 <!-- セル番号コントロール -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="セル番号:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="Cell Number:" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <Button Content="←" Command="{Binding ChangeCellIndexCommand}" 
                             CommandParameter="-1" Margin="0,0,5,0"/>
                     <TextBlock Text="{Binding ActiveCellIndex}" VerticalAlignment="Center" Margin="0,0,5,0"/>
                     <Button Content="→" Command="{Binding ChangeCellIndexCommand}" 
                             CommandParameter="1" Margin="0,0,10,0"/>
-                    <Button Content="追加" 
+                    <Button Content="Add" 
                             Command="{Binding AddCellCommand}"
                             Margin="0,0,5,0"/>
-                    <Button Content="削除" 
+                    <Button Content="Delete" 
                             Command="{Binding DeleteCellCommand}"/>
                 </StackPanel>
 
                 <!-- 体の位置調整 -->
                 <StackPanel Margin="0,10,0,0">
-                    <TextBlock Text="体の位置" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Body Position" FontWeight="Bold" Margin="0,0,0,5"/>
                     <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto">
                         <Button Grid.Row="0" Grid.Column="1" Content="↑"
                                 Command="{Binding UpdateCellPositionCommand}"
@@ -111,7 +111,7 @@
 
                 <!-- 顔の位置調整 -->
                 <StackPanel Margin="0,10,0,0">
-                    <TextBlock Text="顔の位置" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Face Position" FontWeight="Bold" Margin="0,0,0,5"/>
                     <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto">
                         <Button Grid.Row="0" Grid.Column="1" Content="↑"
                                 Command="{Binding UpdateCellPositionCommand}"
@@ -137,7 +137,7 @@
                             <TextBlock Text="{Binding ActiveCell.FaceX}" Margin="0,0,10,0"/>
                             <TextBlock Text="Y:" Margin="0,0,5,0"/>
                             <TextBlock Text="{Binding ActiveCell.FaceY}" Margin="0,0,10,0"/>
-                            <TextBlock Text="角度:" Margin="0,0,5,0"/>
+                            <TextBlock Text="Angle:" Margin="0,0,5,0"/>
                             <TextBlock Text="{Binding ActiveCell.FaceAngle}"/>
                         </StackPanel>
                     </Grid>
@@ -145,7 +145,7 @@
 
                 <!-- アイテムの位置調整 -->
                 <StackPanel Margin="0,10,0,0">
-                    <TextBlock Text="アイテムの位置" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Item Position" FontWeight="Bold" Margin="0,0,0,5"/>
                     <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto">
                         <Button Grid.Row="0" Grid.Column="1" Content="↑"
                                 Command="{Binding UpdateCellPositionCommand}"
@@ -171,7 +171,7 @@
                             <TextBlock Text="{Binding ActiveCell.ItemX}" Margin="0,0,10,0"/>
                             <TextBlock Text="Y:" Margin="0,0,5,0"/>
                             <TextBlock Text="{Binding ActiveCell.ItemY}" Margin="0,0,10,0"/>
-                            <TextBlock Text="角度:" Margin="0,0,5,0"/>
+                            <TextBlock Text="Angle:" Margin="0,0,5,0"/>
                             <TextBlock Text="{Binding ActiveCell.ItemAngle}"/>
                         </StackPanel>
                     </Grid>
@@ -179,11 +179,11 @@
 
                 <!-- 保存と読み込みボタン -->
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Button Content="保存" 
+                    <Button Content="Save" 
                             Command="{Binding SaveCommand}"
                             CommandParameter="cells.json"
                             Margin="0,0,10,0"/>
-                    <Button Content="読み込み" 
+                    <Button Content="Load" 
                             Command="{Binding LoadCommand}"
                             CommandParameter=""/>
                 </StackPanel>
