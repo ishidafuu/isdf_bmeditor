@@ -173,41 +173,45 @@ public class CharaCellEditorViewModel : ViewModelBase
             return;
         }
 
-        Console.WriteLine($"Updating position: {parameter}, Current values - BodyX:{ActiveCell.BodyX}, BodyY:{ActiveCell.BodyY}, FaceX:{ActiveCell.FaceX}, FaceY:{ActiveCell.FaceY}, ItemX:{ActiveCell.ItemX}, ItemY:{ActiveCell.ItemY}");
+        // 拡大率を考慮した移動量を計算（小数点以下を四捨五入）
+        var scaledAmount = (int)Math.Round(amount * Scale);
+
+        Console.WriteLine($"Updating position: {parameter}, Scale: {Scale}, Scaled amount: {scaledAmount}");
+        Console.WriteLine($"Current values - BodyX:{ActiveCell.BodyX}, BodyY:{ActiveCell.BodyY}, FaceX:{ActiveCell.FaceX}, FaceY:{ActiveCell.FaceY}, ItemX:{ActiveCell.ItemX}, ItemY:{ActiveCell.ItemY}");
 
         var property = parts[0];
         switch (property)
         {
             case "BodyX":
-                ActiveCell.BodyX += amount;
+                ActiveCell.BodyX += scaledAmount;
                 Console.WriteLine($"Updated BodyX to: {ActiveCell.BodyX}");
                 break;
             case "BodyY":
-                ActiveCell.BodyY += amount;
+                ActiveCell.BodyY += scaledAmount;
                 Console.WriteLine($"Updated BodyY to: {ActiveCell.BodyY}");
                 break;
             case "FaceX":
-                ActiveCell.FaceX += amount;
+                ActiveCell.FaceX += scaledAmount;
                 Console.WriteLine($"Updated FaceX to: {ActiveCell.FaceX}");
                 break;
             case "FaceY":
-                ActiveCell.FaceY += amount;
+                ActiveCell.FaceY += scaledAmount;
                 Console.WriteLine($"Updated FaceY to: {ActiveCell.FaceY}");
                 break;
             case "FaceAngle":
-                ActiveCell.FaceAngle = (ActiveCell.FaceAngle + amount + 360) % 360;
+                ActiveCell.FaceAngle = (ActiveCell.FaceAngle + amount + 360) % 360; // 角度は拡大率を適用しない
                 Console.WriteLine($"Updated FaceAngle to: {ActiveCell.FaceAngle}");
                 break;
             case "ItemX":
-                ActiveCell.ItemX += amount;
+                ActiveCell.ItemX += scaledAmount;
                 Console.WriteLine($"Updated ItemX to: {ActiveCell.ItemX}");
                 break;
             case "ItemY":
-                ActiveCell.ItemY += amount;
+                ActiveCell.ItemY += scaledAmount;
                 Console.WriteLine($"Updated ItemY to: {ActiveCell.ItemY}");
                 break;
             case "ItemAngle":
-                ActiveCell.ItemAngle = (ActiveCell.ItemAngle + amount + 360) % 360;
+                ActiveCell.ItemAngle = (ActiveCell.ItemAngle + amount + 360) % 360; // 角度は拡大率を適用しない
                 Console.WriteLine($"Updated ItemAngle to: {ActiveCell.ItemAngle}");
                 break;
             default:
