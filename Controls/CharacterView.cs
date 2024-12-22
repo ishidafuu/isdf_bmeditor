@@ -154,17 +154,18 @@ public class CharacterView : Control
         Matrix transform;
         if (CellSize.Width == 16 && CellSize.Height == 16)  // フェイス
         {
-            transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2 - 4) *  // 左右中心、上下は中心から4ピクセル上
-                       Matrix.CreateScale(Scale, Scale) *
-                       Matrix.CreateRotation(Angle * Math.PI / 180) *
-                       Matrix.CreateTranslation(scaledX, scaledY);
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *  // 中心を原点に移動
+                       Matrix.CreateRotation(Angle * Math.PI / 180) *  // 回転
+                       Matrix.CreateScale(Scale, Scale) *  // スケーリング
+                       Matrix.CreateTranslation(0, -4 * Scale) *  // 4ピクセル上にオフセット（スケール適用）
+                       Matrix.CreateTranslation(scaledX, scaledY);  // 最終位置に移動
         }
         else  // ボディおよび、アイテム
         {
-            transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *  // 左右中心、上下中心
-                       Matrix.CreateScale(Scale, Scale) *
-                       Matrix.CreateRotation(Angle * Math.PI / 180) *
-                       Matrix.CreateTranslation(scaledX, scaledY);
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *  // 中心を原点に移動
+                       Matrix.CreateRotation(Angle * Math.PI / 180) *  // 回転
+                       Matrix.CreateScale(Scale, Scale) *  // スケーリング
+                       Matrix.CreateTranslation(scaledX, scaledY);  // 最終位置に移動
         }
 
         using var _ = context.PushTransform(transform);
