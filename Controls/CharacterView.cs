@@ -142,11 +142,20 @@ public class CharacterView : Control
             CellSize.Width,
             CellSize.Height);
 
+        // 拡大後のサイズを計算
+        var scaledWidth = CellSize.Width * Scale;
+        var scaledHeight = CellSize.Height * Scale;
+
+        // 変換行列を計算
+        // 1. 原点を中心に移動
+        // 2. 拡大
+        // 3. 回転
+        // 4. 指定位置に移動（拡大後のサイズを考慮）
         using var _ = context.PushTransform(
             Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *
             Matrix.CreateScale(Scale, Scale) *
             Matrix.CreateRotation(Angle * Math.PI / 180) *
-            Matrix.CreateTranslation(X + CellSize.Width / 2, Y + CellSize.Height / 2));
+            Matrix.CreateTranslation(X, Y));
 
         // アンチエイリアスを無効にするレンダリングオプションを設定
         var renderOptions = new RenderOptions

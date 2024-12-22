@@ -20,8 +20,7 @@
                 <!-- ガイドライン -->
                 <Canvas Width="640" Height="640"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="-20,-20,0,0">
+                        VerticalAlignment="Center">
                     <Line StartPoint="320,0"
                           EndPoint="320,480"
                           Stroke="Red"
@@ -42,8 +41,7 @@
                                       CellIndex="{Binding ActiveCell.BodyIndex, Mode=TwoWay}"
                                       CellSize="40,40"
                                       HorizontalAlignment="Center"
-                                      VerticalAlignment="Top"
-                                      Margin="0,300,0,0"/>
+                                      VerticalAlignment="Center"/>
                 <controls:CharacterView Image="{Binding FaceImage}"
                                       X="{Binding ActiveCell.FaceX, Mode=TwoWay}"
                                       Y="{Binding ActiveCell.FaceY, Mode=TwoWay}"
@@ -52,8 +50,7 @@
                                       CellIndex="{Binding ActiveCell.FaceIndex, Mode=TwoWay}"
                                       CellSize="16,16"
                                       HorizontalAlignment="Center"
-                                      VerticalAlignment="Top"
-                                      Margin="0,300,0,0"/>
+                                      VerticalAlignment="Center"/>
                 <controls:CharacterView Image="{Binding ItemImage}"
                                       X="{Binding ActiveCell.ItemX, Mode=TwoWay}"
                                       Y="{Binding ActiveCell.ItemY, Mode=TwoWay}"
@@ -62,8 +59,7 @@
                                       CellIndex="{Binding ActiveCell.ItemIndex, Mode=TwoWay}"
                                       CellSize="32,32"
                                       HorizontalAlignment="Center"
-                                      VerticalAlignment="Top"
-                                      Margin="0,300,0,0"/>
+                                      VerticalAlignment="Center"/>
             </Grid>
         </Border>
 
