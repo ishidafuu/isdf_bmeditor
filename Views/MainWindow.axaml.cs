@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using isdf_bmeditor.ViewModels;
+using Avalonia;
 
 namespace isdf_bmeditor.Views;
 
@@ -15,7 +16,7 @@ public partial class MainWindow : Window
     {
         if (DataContext is MainWindowViewModel viewModel)
         {
-            viewModel.SaveWindowPosition(Position);
+            viewModel.SaveWindowPosition(new Point(Position.X, Position.Y));
         }
     }
 } 

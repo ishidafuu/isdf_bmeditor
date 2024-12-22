@@ -18,7 +18,7 @@ public class MainWindowViewModel : ViewModelBase
     private ViewModelBase? _currentViewModel;
     private IStorageProvider? _storageProvider;
     private readonly Services.ImageService _imageService;
-    private PixelPoint _windowPosition;
+    private Point _windowPosition;
     private const string SettingsFileName = "windowposition.json";
 
     public MainWindowViewModel()
@@ -71,7 +71,7 @@ public class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public PixelPoint WindowPosition
+    public Point WindowPosition
     {
         get => _windowPosition;
         set => this.RaiseAndSetIfChanged(ref _windowPosition, value);
@@ -85,22 +85,22 @@ public class MainWindowViewModel : ViewModelBase
             if (File.Exists(settingsPath))
             {
                 var json = File.ReadAllText(settingsPath);
-                var position = JsonSerializer.Deserialize<PixelPoint>(json);
+                var position = JsonSerializer.Deserialize<Point>(json);
                 WindowPosition = position;
             }
             else
             {
-                WindowPosition = new PixelPoint(0, 0);
+                WindowPosition = new Point(0, 0);
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"ウィンドウ位置の読み込みに失敗しました: {ex.Message}");
-            WindowPosition = new PixelPoint(0, 0);
+            WindowPosition = new Point(0, 0);
         }
     }
 
-    public void SaveWindowPosition(PixelPoint position)
+    public void SaveWindowPosition(Point position)
     {
         try
         {
