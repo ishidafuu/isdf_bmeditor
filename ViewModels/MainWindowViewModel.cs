@@ -20,10 +20,20 @@ public class MainWindowViewModel : ViewModelBase
     private readonly Services.ImageService _imageService;
     private Point _windowPosition;
     private const string SettingsFileName = "windowposition.json";
+    private readonly string _settingsFilePath;
 
     public MainWindowViewModel()
     {
         _imageService = new Services.ImageService();
+        
+        // 設定ファイルのパスを設定
+        var appDataPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "isdf_bmeditor"
+        );
+        Directory.CreateDirectory(appDataPath); // ディレクトリが存在しない場合は作成
+        _settingsFilePath = Path.Combine(appDataPath, SettingsFileName);
+
         LoadWindowPosition();
 
         ShowCharaCellEditorCommand = ReactiveCommand.Create(() =>
@@ -81,16 +91,17 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            var settingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SettingsFileName);
-            if (File.Exists(settingsPath))
+            if (File.Exists(_settingsFilePath))
             {
-                var json = File.ReadAllText(settingsPath);
+                var json = File.ReadAllText(_settingsFilePath);
                 var position = JsonSerializer.Deserialize<Point>(json);
                 WindowPosition = position;
+                Console.WriteLine($"ウィンドウ位置を読み込みました: X={position.X}, Y={position.Y}");
             }
             else
             {
                 WindowPosition = new Point(0, 0);
+                Console.WriteLine("設定ファイルが存在しないため、デフォルト位置を使用します");
             }
         }
         catch (Exception ex)
@@ -104,9 +115,9 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            var settingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SettingsFileName);
             var json = JsonSerializer.Serialize(position);
-            File.WriteAllText(settingsPath, json);
+            File.WriteAllText(_settingsFilePath, json);
+            Console.WriteLine($"ウィンドウ位置を保存しました: X={position.X}, Y={position.Y}");
         }
         catch (Exception ex)
         {
