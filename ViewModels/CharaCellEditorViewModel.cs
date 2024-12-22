@@ -197,7 +197,10 @@ public class CharaCellEditorViewModel : ViewModelBase
                 Console.WriteLine($"Updated FaceY to: {ActiveCell.FaceY}");
                 break;
             case "FaceAngle":
-                ActiveCell.FaceAngle = (ActiveCell.FaceAngle + amount + 360) % 360;
+                // 90度単位の回転のみを許可
+                var newAngle = (ActiveCell.FaceAngle + amount + 360) % 360;
+                // 最も近い90度の倍数に丸める
+                ActiveCell.FaceAngle = (int)(Math.Round(newAngle / 90.0) * 90) % 360;
                 Console.WriteLine($"Updated FaceAngle to: {ActiveCell.FaceAngle}");
                 break;
             case "ItemX":

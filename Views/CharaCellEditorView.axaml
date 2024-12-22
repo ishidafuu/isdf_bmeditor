@@ -127,10 +127,10 @@
                                 CommandParameter="FaceY_1"/>
                         <Button Grid.Row="2" Grid.Column="0" Content="↺"
                                 Command="{Binding UpdateCellPositionCommand}"
-                                CommandParameter="FaceAngle_-15"/>
+                                CommandParameter="FaceAngle_-90"/>
                         <Button Grid.Row="2" Grid.Column="2" Content="↻"
                                 Command="{Binding UpdateCellPositionCommand}"
-                                CommandParameter="FaceAngle_15"/>
+                                CommandParameter="FaceAngle_90"/>
                         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" 
                                   Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBlock Text="X:" Margin="0,0,5,0"/>
