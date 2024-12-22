@@ -10,6 +10,12 @@ using System.Text.Json;
 
 namespace isdf_bmeditor.ViewModels;
 
+public class WindowSettings
+{
+    public double X { get; set; }
+    public double Y { get; set; }
+}
+
 /// <summary>
 /// メインウィンドウのViewModel
 /// </summary>
@@ -94,9 +100,12 @@ public class MainWindowViewModel : ViewModelBase
             if (File.Exists(_settingsFilePath))
             {
                 var json = File.ReadAllText(_settingsFilePath);
-                var position = JsonSerializer.Deserialize<Point>(json);
-                WindowPosition = position;
-                Console.WriteLine($"ウィンドウ位置を読み込みました: X={position.X}, Y={position.Y}");
+                var settings = JsonSerializer.Deserialize<WindowSettings>(json);
+                if (settings != null)
+                {
+                    WindowPosition = new Point(settings.X, settings.Y);
+                    Console.WriteLine($"ウィンドウ位置を読み込みました: X={settings.X}, Y={settings.Y}");
+                }
             }
             else
             {
@@ -115,7 +124,12 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            var json = JsonSerializer.Serialize(position);
+            var settings = new WindowSettings
+            {
+                X = position.X,
+                Y = position.Y
+            };
+            var json = JsonSerializer.Serialize(settings);
             File.WriteAllText(_settingsFilePath, json);
             Console.WriteLine($"ウィンドウ位置を保存しました: X={position.X}, Y={position.Y}");
         }
