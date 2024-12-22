@@ -146,29 +146,26 @@ public class CharacterView : Control
         var scaledWidth = CellSize.Width * Scale;
         var scaledHeight = CellSize.Height * Scale;
 
+        // 座標値にスケールを適用
+        var scaledX = X * Scale;
+        var scaledY = Y * Scale;
+
         // 画像タイプに応じた変換行列を設定
         // ボディ（40x40）、フェイス（16x16）、アイテム（32x32）で判定
         Matrix transform;
-        if (CellSize.Width == 40 && CellSize.Height == 40)  // ボディ
+        if (CellSize.Width == 16 && CellSize.Height == 16)  // フェイス
         {
-            transform = Matrix.CreateTranslation(-CellSize.Width / 2, 0) *  // 左右中心、上下は下端
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2 - 4) *  // 左右中心、上下は中心から4ピクセル上
                        Matrix.CreateScale(Scale, Scale) *
                        Matrix.CreateRotation(Angle * Math.PI / 180) *
-                       Matrix.CreateTranslation(X, Y);
-        }
-        else if (CellSize.Width == 16 && CellSize.Height == 16)  // フェイス
-        {
-            transform = Matrix.CreateTranslation(-CellSize.Width / 2, CellSize.Height / 2) *  // 左右中心、上下は下端
-                       Matrix.CreateScale(Scale, Scale) *
-                       Matrix.CreateRotation(Angle * Math.PI / 180) *
-                       Matrix.CreateTranslation(X, Y);
+                       Matrix.CreateTranslation(scaledX, scaledY);
         }
         else  // アイテム（32x32）
         {
-            transform = Matrix.CreateTranslation(-CellSize.Width / 2, 0) *  // 左右中心、上下は下端
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *  // 左右中心、上下中心
                        Matrix.CreateScale(Scale, Scale) *
                        Matrix.CreateRotation(Angle * Math.PI / 180) *
-                       Matrix.CreateTranslation(X, Y);
+                       Matrix.CreateTranslation(scaledX, scaledY);
         }
 
         using var _ = context.PushTransform(transform);
