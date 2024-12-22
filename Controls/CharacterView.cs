@@ -146,16 +146,32 @@ public class CharacterView : Control
         var scaledWidth = CellSize.Width * Scale;
         var scaledHeight = CellSize.Height * Scale;
 
-        // 変換行列を計算
-        // 1. X軸は中心、Y軸は下端を基準に移動
-        // 2. 拡大
-        // 3. 回転
-        // 4. 指定位置に移動
-        using var _ = context.PushTransform(
-            Matrix.CreateTranslation(-CellSize.Width / 2, 0) *
-            Matrix.CreateScale(Scale, Scale) *
-            Matrix.CreateRotation(Angle * Math.PI / 180) *
-            Matrix.CreateTranslation(X, Y));
+        // 画像タイプに応じた変換行列を設定
+        // ボディ（40x40）、フェイス（16x16）、アイテム（32x32）で判定
+        Matrix transform;
+        if (CellSize.Width == 40 && CellSize.Height == 40)  // ボディ
+        {
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, 0) *  // 左右中心、上下は下端
+                       Matrix.CreateScale(Scale, Scale) *
+                       Matrix.CreateRotation(Angle * Math.PI / 180) *
+                       Matrix.CreateTranslation(X, Y);
+        }
+        else if (CellSize.Width == 16 && CellSize.Height == 16)  // フェイス
+        {
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, 0) *  // 左右中心、上下は下端
+                       Matrix.CreateScale(Scale, Scale) *
+                       Matrix.CreateRotation(Angle * Math.PI / 180) *
+                       Matrix.CreateTranslation(X, Y);
+        }
+        else  // アイテム（32x32）
+        {
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, 0) *  // 左右中心、上下は下端
+                       Matrix.CreateScale(Scale, Scale) *
+                       Matrix.CreateRotation(Angle * Math.PI / 180) *
+                       Matrix.CreateTranslation(X, Y);
+        }
+
+        using var _ = context.PushTransform(transform);
 
         // アンチエイリアスを無効にするレンダリングオプションを設定
         var renderOptions = new RenderOptions

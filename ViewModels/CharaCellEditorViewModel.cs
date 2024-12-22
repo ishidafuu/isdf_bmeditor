@@ -33,6 +33,7 @@ public class CharaCellEditorViewModel : ViewModelBase
         _cells.Add(new Cell());
         ActiveCellIndex = 0;
 
+        // コマンドの初期化
         ChangeCellIndexCommand = ReactiveCommand.Create<string>(param => 
         {
             if (int.TryParse(param, out int amount))
