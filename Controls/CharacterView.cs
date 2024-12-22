@@ -147,9 +147,18 @@ public class CharacterView : Control
             Matrix.CreateRotation(Angle * Math.PI / 180) *
             Matrix.CreateTranslation(X + CellSize.Width / 2, Y + CellSize.Height / 2));
 
-        context.DrawImage(
-            Image.Bitmap,
-            sourceRect,
-            new Rect(0, 0, CellSize.Width, CellSize.Height));
+        // アンチエイリアスを無効にするレンダリングオプションを設定
+        var renderOptions = new RenderOptions
+        {
+            BitmapInterpolationMode = BitmapInterpolationMode.None
+        };
+
+        using (context.PushRenderOptions(renderOptions))
+        {
+            context.DrawImage(
+                Image.Bitmap,
+                sourceRect,
+                new Rect(0, 0, CellSize.Width, CellSize.Height));
+        }
     }
 } 
