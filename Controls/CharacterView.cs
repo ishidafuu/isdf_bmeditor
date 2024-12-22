@@ -158,14 +158,14 @@ public class CharacterView : Control
         }
         else if (CellSize.Width == 16 && CellSize.Height == 16)  // フェイス
         {
-            transform = Matrix.CreateTranslation(-CellSize.Width / 2, 0) *  // 左右中心、上下は下端
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, CellSize.Height / 2) *  // 左右中心、上下は下端
                        Matrix.CreateScale(Scale, Scale) *
                        Matrix.CreateRotation(Angle * Math.PI / 180) *
                        Matrix.CreateTranslation(X, Y);
         }
         else  // アイテム（32x32）
         {
-            transform = Matrix.CreateTranslation(-CellSize.Width / 2, 0) *  // 左右中心、上下は下端
+            transform = Matrix.CreateTranslation(-CellSize.Width / 2, CellSize.Height / 2) *  // 左右中心、上下は下端
                        Matrix.CreateScale(Scale, Scale) *
                        Matrix.CreateRotation(Angle * Math.PI / 180) *
                        Matrix.CreateTranslation(X, Y);
