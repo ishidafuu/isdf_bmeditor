@@ -5,6 +5,8 @@ using Avalonia.Platform.Storage;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using System.IO;
+using System.Text.Json;
 
 namespace isdf_bmeditor.ViewModels;
 
@@ -16,10 +18,13 @@ public class MainWindowViewModel : ViewModelBase
     private ViewModelBase? _currentViewModel;
     private IStorageProvider? _storageProvider;
     private readonly Services.ImageService _imageService;
+    private PixelPoint _windowPosition;
+    private const string SettingsFileName = "windowposition.json";
 
     public MainWindowViewModel()
     {
         _imageService = new Services.ImageService();
+        LoadWindowPosition();
 
         ShowCharaCellEditorCommand = ReactiveCommand.Create(() =>
         {
@@ -39,9 +44,6 @@ public class MainWindowViewModel : ViewModelBase
             var viewModel = new BattleMotionEditorViewModel();
             CurrentViewModel = viewModel;
         });
-
-        // コンストラクタでは初期ViewModelを設定しない
-        // 代わりにInitializeメソッドを用意する
     }
 
     public void Initialize()
@@ -66,6 +68,49 @@ public class MainWindowViewModel : ViewModelBase
         else
         {
             throw new InvalidOperationException("デスクトップアプリケーションライフタイムが見つかりません");
+        }
+    }
+
+    public PixelPoint WindowPosition
+    {
+        get => _windowPosition;
+        set => this.RaiseAndSetIfChanged(ref _windowPosition, value);
+    }
+
+    private void LoadWindowPosition()
+    {
+        try
+        {
+            var settingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SettingsFileName);
+            if (File.Exists(settingsPath))
+            {
+                var json = File.ReadAllText(settingsPath);
+                var position = JsonSerializer.Deserialize<PixelPoint>(json);
+                WindowPosition = position;
+            }
+            else
+            {
+                WindowPosition = new PixelPoint(0, 0);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"ウィンドウ位置の読み込みに失敗しました: {ex.Message}");
+            WindowPosition = new PixelPoint(0, 0);
+        }
+    }
+
+    public void SaveWindowPosition(PixelPoint position)
+    {
+        try
+        {
+            var settingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SettingsFileName);
+            var json = JsonSerializer.Serialize(position);
+            File.WriteAllText(settingsPath, json);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"ウィンドウ位置の保存に失敗しました: {ex.Message}");
         }
     }
 
