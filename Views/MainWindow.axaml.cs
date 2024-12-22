@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using isdf_bmeditor.ViewModels;
 using Avalonia;
+using Avalonia.Input;
 
 namespace isdf_bmeditor.Views;
 
@@ -28,6 +29,17 @@ public partial class MainWindow : Window
                 viewModel.WindowPosition = new Point(Position.X, Position.Y);
             }
         };
+
+        // キー入力イベントを追加
+        KeyDown += MainWindow_KeyDown;
+    }
+
+    private void MainWindow_KeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Escape)
+        {
+            Close();
+        }
     }
 
     private void OnClosing(object? sender, WindowClosingEventArgs e)
