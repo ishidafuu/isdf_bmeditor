@@ -147,12 +147,12 @@ public class CharacterView : Control
         var scaledHeight = CellSize.Height * Scale;
 
         // 変換行列を計算
-        // 1. 原点を中心に移動
+        // 1. X軸は中心、Y軸は下端を基準に移動
         // 2. 拡大
         // 3. 回転
-        // 4. 指定位置に移動（拡大後のサイズを考慮）
+        // 4. 指定位置に移動
         using var _ = context.PushTransform(
-            Matrix.CreateTranslation(-CellSize.Width / 2, -CellSize.Height / 2) *
+            Matrix.CreateTranslation(-CellSize.Width / 2, 0) *
             Matrix.CreateScale(Scale, Scale) *
             Matrix.CreateRotation(Angle * Math.PI / 180) *
             Matrix.CreateTranslation(X, Y));
