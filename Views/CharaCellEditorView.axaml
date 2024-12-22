@@ -17,6 +17,23 @@
                 BorderThickness="1" 
                 Margin="5">
             <Grid>
+                <!-- ガイドライン -->
+                <Canvas Width="640" Height="640"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="-20,-20,0,0">
+                    <Line StartPoint="320,0"
+                          EndPoint="320,480"
+                          Stroke="Red"
+                          StrokeThickness="4"
+                          StrokeDashArray="8,8"/>
+                    <Line StartPoint="0,480"
+                          EndPoint="640,480"
+                          Stroke="Red"
+                          StrokeThickness="4"
+                          StrokeDashArray="8,8"/>
+                </Canvas>
+
                 <controls:CharacterView Image="{Binding BodyImage}"
                                       X="{Binding ActiveCell.BodyX, Mode=TwoWay}"
                                       Y="{Binding ActiveCell.BodyY, Mode=TwoWay}"
@@ -25,7 +42,8 @@
                                       CellIndex="{Binding ActiveCell.BodyIndex, Mode=TwoWay}"
                                       CellSize="40,40"
                                       HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"/>
+                                      VerticalAlignment="Top"
+                                      Margin="0,300,0,0"/>
                 <controls:CharacterView Image="{Binding FaceImage}"
                                       X="{Binding ActiveCell.FaceX, Mode=TwoWay}"
                                       Y="{Binding ActiveCell.FaceY, Mode=TwoWay}"
@@ -34,7 +52,8 @@
                                       CellIndex="{Binding ActiveCell.FaceIndex, Mode=TwoWay}"
                                       CellSize="16,16"
                                       HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"/>
+                                      VerticalAlignment="Top"
+                                      Margin="0,300,0,0"/>
                 <controls:CharacterView Image="{Binding ItemImage}"
                                       X="{Binding ActiveCell.ItemX, Mode=TwoWay}"
                                       Y="{Binding ActiveCell.ItemY, Mode=TwoWay}"
@@ -43,7 +62,8 @@
                                       CellIndex="{Binding ActiveCell.ItemIndex, Mode=TwoWay}"
                                       CellSize="32,32"
                                       HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"/>
+                                      VerticalAlignment="Top"
+                                      Margin="0,300,0,0"/>
             </Grid>
         </Border>
 
